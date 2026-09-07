@@ -1,0 +1,14 @@
+{
+  "name": "naia-comm",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Public Naia community participation and operations project",
+  "scripts": {
+    "test": "node scripts/validate.mjs && node scripts/test-site-submit.mjs && node scripts/test-public-safety-history.mjs && node scripts/public-safety-scan.mjs",
+    "test:first-mission": "node scripts/test-first-mission.mjs"
+  },
+  "engines": {
+    "node": ">=20.11"
+  },
+  "license": "Apache-2.0"
+}

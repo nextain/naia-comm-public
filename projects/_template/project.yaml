@@ -1,0 +1,34 @@
+version: 1
+project:
+  id: replace-me
+  repository: replace-me/replace-me
+  issue_tracker: github
+  default_branch: main
+  integration_branch: main
+environments:
+  development:
+    url: null
+    database: none
+  production:
+    url: "https://replace.example"
+    database: never_store_credentials_here
+workspace:
+  ssh_home_pattern: "~/project-name"
+  branch_pattern: "issue/<number>-<short-name>"
+roles:
+  contributors: []
+  integrators: []
+  release_owners: []
+  reviewers: []
+discord:
+  enabled: false
+  project_alias: replace-me
+  bot_token_env: DISCORD_BOT_TOKEN
+  runtime_registry: .runtime/participants.json
+commands:
+  validate: "replace-with-project-command"
+  deploy_dev: null
+  deploy_production: null
+guards:
+  production_requires_issue_approval: true
+  database_write_requires_explicit_authority: true

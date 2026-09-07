@@ -1,0 +1,9 @@
+{
+  "routes": [
+    { "route": "/api/*", "methods": ["POST"] }
+  ],
+  "responseOverrides": {
+    "404": { "rewrite": "/index.html" }
+  },
+  "platform": { "apiRuntime": "node:20" }
+}

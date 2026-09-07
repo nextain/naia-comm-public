@@ -1,0 +1,53 @@
+version: 1
+states:
+  - issue_open
+  - branch_active
+  - implementation_ready
+  - main_merge_requested
+  - development_deployed
+  - acceptance_requested
+  - production_approved
+  - production_deployed
+  - closed
+transitions:
+  - from: issue_open
+    to: branch_active
+    requires: [assignee, acceptance_criteria, issue_branch]
+  - from: branch_active
+    to: implementation_ready
+    requires: [implementation_summary, local_validation]
+  - from: implementation_ready
+    to: main_merge_requested
+    requires: [commit_sha, changed_scope, rollback_plan]
+  - from: main_merge_requested
+    to: closed
+    actor: integrator
+    requires: [review_result, merged_sha, non_deployment_reason, independent_reviewer, reproducibility_steps, closure_record]
+  - from: main_merge_requested
+    to: development_deployed
+    actor: integrator
+    requires: [review_result, merged_sha, development_environment, development_validation]
+  - from: main_merge_requested
+    to: acceptance_requested
+    actor: integrator
+    requires: [review_result, merged_sha, no_development_environment_reason]
+  - from: development_deployed
+    to: acceptance_requested
+    requires: [acceptance_steps, known_limitations]
+  - from: acceptance_requested
+    to: production_approved
+    actor: release_owner
+    requires: [owner_approval]
+  - from: production_approved
+    to: production_deployed
+    actor: release_owner
+    requires: [production_sha, deployment_result, rollback_reference]
+  - from: production_deployed
+    to: closed
+    requires: [post_deploy_validation]
+rules:
+  - all_state_changes_are_recorded_in_issue
+  - failed_validation_returns_to_branch_active
+  - emergency_changes_still_require_issue_and_post_action_evidence
+  - non_deployment_closure_requires_integrator_review_and_issue_evidence
+  - non_deployment_review_must_name_reviewer_distinct_from_contributor

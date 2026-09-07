@@ -1,0 +1,36 @@
+version: 1
+project:
+  id: naia-comm
+  repository: nextain/naia-comm-public
+  issue_tracker: github
+  default_branch: main
+  integration_branch: main
+environments:
+  development:
+    url: null
+    database: none
+  production:
+    url: "https://naia-comm.nextain.io"
+    database: never_store_credentials_here
+workspace:
+  ssh_home_pattern: "~/naia-comm"
+  branch_pattern: "issue/<number>-<short-name>"
+# These are workflow role declarations; GitHub permissions/protection and
+# repository variables enforce them.
+roles:
+  contributors: [community-contributor]
+  integrators: [community-integrator]
+  release_owners: [community-release-owner]
+  reviewers: []
+discord:
+  enabled: true
+  project_alias: naia-comm
+  bot_token_env: DISCORD_BOT_TOKEN
+  runtime_registry: .runtime/participants.json
+commands:
+  validate: "npm test"
+  deploy_dev: null
+  deploy_production: "GitHub Actions workflow_dispatch: Deploy naia-comm survey site"
+guards:
+  production_requires_issue_approval: true
+  database_write_requires_explicit_authority: true

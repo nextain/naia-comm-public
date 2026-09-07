@@ -1,0 +1,38 @@
+name: validate
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  pull-request-contract:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    env:
+      HEAD_REF: ${{ github.head_ref }}
+      PR_BODY: ${{ github.event.pull_request.body }}
+    steps:
+      - name: Require issue branch and reference
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! "$HEAD_REF" =~ ^issue/[0-9]+-[^/[:space:]]+$ ]]; then
+            echo "PRs must come from an issue/<number>-<short-name> branch"
+            exit 1
+          fi
+          if ! printf '%s\n' "$PR_BODY" | grep -Eiq '(^|[^[:alnum:]])Refs #[0-9]+([^[:alnum:]]|$)'; then
+            echo "PR body must contain Refs #[0-9]+"
+            exit 1
+          fi
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.11"
+      - run: npm test
+      - run: npm run test:first-mission

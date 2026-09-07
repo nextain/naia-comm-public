@@ -1,0 +1,9 @@
+{
+  "name": "naia-comm-api",
+  "version": "1.0.0",
+  "private": true,
+  "main": "submit/index.js",
+  "engines": {
+    "node": ">=20.11"
+  }
+}

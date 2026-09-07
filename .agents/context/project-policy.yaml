@@ -1,0 +1,46 @@
+version: 1
+identity:
+  name: naia-comm
+  visibility: public
+  authority_unit: project
+source_of_truth:
+  work_item: github_issue
+  required_records:
+    - scope_and_acceptance
+    - assignee_and_issue_branch
+    - implementation_summary
+    - validation_evidence
+  conditional_required_records:
+    deployment_requested:
+      - main_merge_and_deployment
+      - production_approval_and_deployment
+    deployment_not_requested:
+      - non_deployment_review_and_closure
+upstream:
+  repository: nextain/naia-pj-adk
+  adopted_commit: 46b4266314df0a2af8f01e13fcc248ae400c1319
+  adopted_at: "2026-09-07"
+  update_procedure: "업스트림 main의 새 커밋을 검토하고, 이슈에 변경 범위·검증 결과를 기록한 뒤 정확한 SHA를 갱신하고 npm test와 공개 안전성 검사를 다시 실행합니다."
+roles:
+  contributor:
+    may: [create_issue, work_on_issue_branch, test, request_main_merge]
+    may_not: [merge_main, deploy_production, mutate_shared_database]
+  integrator:
+    may: [review_change, merge_main, deploy_development, record_development_result, record_non_deployment_closure]
+    may_not: [deploy_production_without_approval]
+  release_owner:
+    may: [approve_production, deploy_production, initiate_rollback]
+  reviewer:
+    may: [review_change, request_changes, approve_main_merge]
+    may_not: [merge_main, deploy_production, mutate_shared_database]
+authority:
+  deny_by_default: [merge, deployment, database_write, secret_access, production_access]
+  rule: access_to_discord_or_ai_tool_never_grants_operational_authority
+data:
+  tracked_files_must_not_contain: [secret_values, personal_ids, private_hosts, ip_addresses, customer_data, production_topology]
+  database_policy: each_project_adapter_must_declare_environment_and_write_authority
+public_release:
+  default: allowed_after_review
+  review_scope: [working_tree, hidden_files, generated_files, requirements, progress, logs, git_history, tags, workflows, submodules, licenses]
+  approval: owner_must_approve_exact_commit_sha
+  candidate_change_invalidates_approval: true
