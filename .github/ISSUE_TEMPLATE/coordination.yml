@@ -1,0 +1,37 @@
+name: Cross-repository coordination
+description: 여러 Naia 저장소의 변경과 통합 검증을 함께 추적합니다.
+title: "[coordination] "
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: 사용자 결과와 완료 조건 / Outcome and acceptance
+    validations:
+      required: true
+  - type: textarea
+    id: repositories
+    attributes:
+      label: 영향 저장소와 구현 이슈 / Repositories and implementation issues
+      description: owner/repo#number 형식으로 연결합니다. 번호가 없으면 미생성으로 적습니다.
+    validations:
+      required: true
+  - type: textarea
+    id: ownership
+    attributes:
+      label: 조율 담당자와 각 저장소 검토자 / Coordinator and reviewers
+      description: 동의한 담당자만 지정하고 미정이면 UNASSIGNED로 적습니다.
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: 호환성·병합 순서·복구 / Compatibility, merge order and rollback
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 통합 검증 / Integration evidence
+      description: docs/templates/INTEGRATION.md를 사용합니다. 정확한 SHA와 OS별 결과를 기록하고 미실행은 NOT_RUN으로 표시합니다.
+    validations:
+      required: true

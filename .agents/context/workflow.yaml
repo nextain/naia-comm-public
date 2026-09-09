@@ -51,3 +51,7 @@ rules:
   - emergency_changes_still_require_issue_and_post_action_evidence
   - non_deployment_closure_requires_integrator_review_and_issue_evidence
   - non_deployment_review_must_name_reviewer_distinct_from_contributor
+
+# This state machine governs this repository and its declared site adapter.
+# Product repositories retain their own rules; cross-repository coordination
+# and integration gates are specified in docs/ECOSYSTEM.ko.md.

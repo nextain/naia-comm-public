@@ -1,5 +1,7 @@
 # naia-comm 기여 안내
 
+제품 코드·여러 저장소 공동 작업은 [분산 협업 운영안](docs/ECOSYSTEM.ko.md)을 먼저 확인하세요. 아래 절차는 이 공통 저장소 자체에 기여하는 안내입니다.
+
 이 문서는 처음 참여하는 사람이 자신의 시간과 역할에 맞는 작은 일을 골라, 다른 사람이 재현할 수 있는 결과로 남기도록 안내합니다. 모든 작업은 GitHub 이슈에 연결합니다. 이슈·프로젝트 정책·저장소의 `AGENTS.md`가 이 문서보다 우선합니다.
 
 ## 시작 전 확인
@@ -19,7 +21,7 @@ sed -n '1,220p' projects/naia-comm/project.yaml
 npm test
 ```
 
-SSH를 사용하려면 `git@github.com:<your-account>/naia-comm-public.git`와 `git@github.com:nextain/naia-comm-public.git`를 각각 fork와 upstream 주소로 사용합니다. 실제 이슈의 완료 조건, 기여 유형, 담당 역할, 연락 가능한 시간, 응답 기대 시간, 파일을 수정할 수 있는 시간창, 배포 필요 여부와 대상을 먼저 기록합니다. 시간창 문서는 약속을 설명할 뿐 자동 권한 검사가 아닙니다. 역할 선언의 실제 enforcement는 GitHub 저장소 권한, branch protection, protected environment와 저장소 변수에서 확인하며, 이슈의 reviewer 지정은 권한을 부여하거나 응답 시간을 보장하지 않습니다.
+SSH를 사용하려면 `git@github.com:<your-account>/naia-comm-public.git`와 `git@github.com:nextain/naia-comm-public.git`를 각각 fork와 upstream 주소로 사용합니다. 실제 이슈의 완료 조건, 기여 유형, 담당 역할, 배포 필요 여부와 대상을 먼저 기록합니다. 연락 가능 시간과 응답 기대 시간은 선택 사항이며 공유 자원을 변경할 때만 시간창을 합의합니다. 시간창 문서는 약속을 설명할 뿐 자동 권한 검사가 아닙니다. 역할 선언의 실제 enforcement는 GitHub 저장소 권한, branch protection, protected environment와 저장소 변수에서 확인하며, 이슈의 reviewer 지정은 권한을 부여하거나 응답 시간을 보장하지 않습니다.
 
 ## 시간·역할·연락 경로
 

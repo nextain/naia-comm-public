@@ -31,7 +31,7 @@ body:
     id: assignee_alias
     attributes:
       label: 담당자 별칭
-      description: GitHub handle과 같은 소문자 별칭을 스스로 정합니다(형식 ^[a-z0-9][a-z0-9_-]{1,31}$). 운영진이 .runtime 등록부에 등록합니다.
+      description: 연락 가능한 공개 GitHub handle을 적습니다. Discord나 서버 등록은 필수 조건이 아닙니다.
       placeholder: "예: community-contributor"
     validations:
       required: true
@@ -39,23 +39,24 @@ body:
     id: issue_branch
     attributes:
       label: 이슈 브랜치
+      description: 이슈를 만든 뒤 실제 번호로 정합니다. 생성 전에는 미정으로 적어도 됩니다.
       placeholder: "예: issue/123-short-name"
     validations:
       required: true
   - type: input
     id: availability
     attributes:
-      label: 연락 가능 시간과 응답 기대 시간
+      label: 연락 가능 시간과 응답 기대 시간 (선택)
       placeholder: "예: 평일 10:00–18:00 KST / 다음 영업일 응답"
     validations:
-      required: true
+      required: false
   - type: input
     id: mutation_window
     attributes:
-      label: 실제 변경 허용 시간창
+      label: 공유 자원 변경 시간창 (해당할 때만)
       placeholder: "예: 2026-09-10 14:00–16:00 KST"
     validations:
-      required: true
+      required: false
   - type: dropdown
     id: deployment
     attributes:

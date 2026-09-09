@@ -4,8 +4,9 @@
   "private": false,
   "description": "Public Naia community participation and operations project",
   "scripts": {
-    "test": "node scripts/validate.mjs && node scripts/test-site-submit.mjs && node scripts/test-public-safety-history.mjs && node scripts/public-safety-scan.mjs",
-    "test:first-mission": "node scripts/test-first-mission.mjs"
+    "test": "node scripts/test-workspace.mjs && node scripts/validate.mjs && node scripts/test-site-submit.mjs && node scripts/test-public-safety-history.mjs && node scripts/public-safety-scan.mjs",
+    "test:first-mission": "node scripts/test-first-mission.mjs",
+    "workspace": "node scripts/workspace.mjs"
   },
   "engines": {
     "node": ">=20.11"

@@ -7,3 +7,10 @@ node_modules/
 coverage/
 *.log
 .DS_Store
+
+# Optional product clones are independent Git repositories.
+/projects/naia-shell/
+/projects/naia-agent/
+/projects/naia-memory/
+/projects/naia-kb-compiler/
+/projects/naia-os/

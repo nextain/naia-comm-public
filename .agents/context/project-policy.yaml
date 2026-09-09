@@ -44,3 +44,11 @@ public_release:
   review_scope: [working_tree, hidden_files, generated_files, requirements, progress, logs, git_history, tags, workflows, submodules, licenses]
   approval: owner_must_approve_exact_commit_sha
   candidate_change_invalidates_approval: true
+collaboration:
+  execution: contributor_local_workspace
+  ecosystem_guide: docs/ECOSYSTEM.ko.md
+  repository_catalog: workspace/repos.json
+  cross_repository_issue_key: owner/repo#number
+  single_repository_work: owning_repository_issue_only
+  product_policy_adoption: explicit_per_repository
+  coordination_does_not_grant_merge_or_release_authority: true

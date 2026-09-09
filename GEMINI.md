@@ -33,3 +33,7 @@ The policy in `.agents/context/project-policy.yaml` governs merge, deployment, d
 ## Mirrors
 
 `AGENTS.md`, `CLAUDE.md`, and `GEMINI.md` must remain byte-identical. Update the canonical entrypoint and verify the mirrors before committing.
+
+## Distributed product collaboration
+
+Read `docs/ECOSYSTEM.ko.md` before cross-repository work and `workspace/repos.json` for public repository routing. Optional clones under `projects/` are independent repositories: read each repository's own entrypoint before acting there. Community policy does not override product-local authority. Use `owner/repo#number` for cross-repository references. Local development is the default; Discord and AI tools grant no execution or release authority. `workspace.mjs` is read-only and does not certify product compatibility.

@@ -1,3 +1,4 @@
+import { isLocalProductPath } from './local-product-paths.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
@@ -27,6 +28,7 @@ function isForbiddenFilename(file) {
 }
 
 function isIgnoredLocalPath(file) {
+  if (isLocalProductPath(file)) return true;
   const parts = pathParts(file);
   return parts.some((part) => excluded.has(part) || isEnvFilename(part));
 }

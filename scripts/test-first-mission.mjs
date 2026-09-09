@@ -1,3 +1,4 @@
+import { isLocalProductPath } from './local-product-paths.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
@@ -20,6 +21,7 @@ const sourceRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const ignoredTopLevel = new Set(['.git', 'node_modules', '.runtime', '.secrets', 'coverage']);
 
 function isIgnoredPath(relativePath) {
+  if (isLocalProductPath(relativePath)) return true;
   const parts = relativePath.split(/[\\/]+/).filter(Boolean);
   return parts.some((part) => ignoredTopLevel.has(part)) || parts.some((part) => (
     part === '.env' || (part.startsWith('.env.') && part !== '.env.example')

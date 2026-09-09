@@ -1,41 +1,34 @@
-version: 1
+version: 2
 topology:
-  bot_per_project: 1
-  gateway_consumers_per_token: 1
-  runtime_location: project_team_dev_server
-  issue_thread_mapping: one_thread_per_github_issue
-identity:
-  canonical_format: "[alias/project]"
-  alias_source: contributor_declared_github_handle
-  alias_format: "^[a-z0-9][a-z0-9_-]{1,31}$"
-  examples: ["[contributor/naia-comm]", "[reviewer/naia-comm]"]
+  default: manual_discussion_with_github_links
+  bot_required: false
+  coding_location: contributor_local_workspace
+  issue_thread_mapping: one_thread_per_qualified_github_issue
 routing:
   channel_thread:
-    key: github_issue_number
-    purpose: [status, discussion, artifact_delivery, review_request]
+    key: owner/repo#number
+    purpose: [discussion, status, review_request, evidence_links]
   direct_message:
-    key: discord_sender_id
-    resolves_to: registered_workspace
     grants_authority: false
-    unresolved_behavior: fail_closed_and_request_registration
+    execution: disabled
 behavior:
-  mention_required_in_shared_channel: true
-  # 확인을 부탁하면서 대상을 적지 않으면 아무도 자기 일로 받지 않는다.
-  # 끝난 일이 아무도 소유하지 않은 확인만 기다리며 멈춘다.
-  address_confirmation_requests: true
-  confirmation_request_fields: [who, what, where_exactly, where_to_report_back, why_i_could_not_check]
-  # operator reply 경로는 멘션을 억제한다. <@id> 는 표시만 되고 알림이 가지 않으므로
-  # 이름을 평문으로 함께 적는다.
-  mention_does_not_notify_on_operator_reply: true
-  coding_runs_in_ssh_workspace: true
-  discord_may_not_execute_without_issue: [code_change, merge, deployment, database_change]
-security:
-  tracked_registry: schema_and_placeholders_only
-  runtime_registry: ignored
-  participant_schema: schemas/participants.schema.json
-  alias_unique_within_project: true
-  sender_has_one_default_workspace: true
+  decisions_and_validation_recorded_in_github: true
+  discord_membership_required_for_contribution: false
+  automatic_code_execution_from_public_messages: false
+  confirmation_request_fields: [who, what, where_exactly, where_to_report_back]
+optional_bot:
+  implemented_here: false
+  purpose: notification_only
+  gateway_consumers_per_token: 1
   token_owner_lock: required
   duplicate_consumer_behavior: fail_closed
+  permissions: minimum_channel_notification_permissions
+  may_not: [execute_code, merge, deploy, access_contributor_workspace]
+legacy_server_adapter:
+  default_enabled: false
+  adoption: separate_explicit_operator_design_and_authorization
+  participant_schema: schemas/participants.schema.json
+  runtime_registry: ignored
+  tracked_registry: schema_only
 audit:
-  issue_records: [requester_alias, thread_reference, job_id, result_summary, commit_or_artifact_reference]
+  issue_records: [qualified_issue_key, decision_summary, evidence_link, commit_reference]

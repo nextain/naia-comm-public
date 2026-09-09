@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-09",
+  "kind": "repository-catalog-not-version-lock",
+  "repositories": [
+    {
+      "id": "naia-shell",
+      "repository": "nextain/naia-shell",
+      "path": "projects/naia-shell",
+      "branch": "main",
+      "purpose": "desktop UI and integration"
+    },
+    {
+      "id": "naia-agent",
+      "repository": "nextain/naia-agent",
+      "path": "projects/naia-agent",
+      "branch": "main",
+      "purpose": "agent runtime"
+    },
+    {
+      "id": "naia-memory",
+      "repository": "nextain/naia-memory",
+      "path": "projects/naia-memory",
+      "branch": "main",
+      "purpose": "memory service"
+    },
+    {
+      "id": "naia-kb-compiler",
+      "repository": "nextain/naia-kb-compiler",
+      "path": "projects/naia-kb-compiler",
+      "branch": "main",
+      "purpose": "knowledge compilation"
+    },
+    {
+      "id": "naia-os",
+      "repository": "nextain/naia-os",
+      "path": "projects/naia-os",
+      "branch": "main",
+      "purpose": "OS image and packaging"
+    }
+  ],
+  "profiles": {
+    "community": [],
+    "shell": [
+      "naia-shell",
+      "naia-agent",
+      "naia-memory",
+      "naia-kb-compiler"
+    ],
+    "os": [
+      "naia-os"
+    ]
+  }
+}

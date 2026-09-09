@@ -13,7 +13,7 @@ environments:
     url: "https://naia-comm.nextain.io"
     database: never_store_credentials_here
 workspace:
-  ssh_home_pattern: "~/naia-comm"
+  local_home_pattern: "~/naia-comm"
   branch_pattern: "issue/<number>-<short-name>"
 # These are workflow role declarations; GitHub permissions/protection and
 # repository variables enforce them.
