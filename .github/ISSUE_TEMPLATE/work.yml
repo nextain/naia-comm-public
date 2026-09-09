@@ -1,88 +1,88 @@
 name: Project work
-description: 모든 개발·검수·배포 작업의 정본 이슈
+description: 개발·검토 작업 기록 / Track a contribution and its review
 title: "[project] "
 labels: [work]
 body:
   - type: textarea
     id: outcome
     attributes:
-      label: 원하는 결과
+      label: 원하는 결과 / Desired outcome
     validations:
       required: true
   - type: textarea
     id: acceptance
     attributes:
-      label: 확인 방법과 완료 조건
+      label: 확인 방법과 완료 조건 / Acceptance criteria
     validations:
       required: true
   - type: dropdown
     id: contribution_type
     attributes:
-      label: 기여 유형
+      label: 기여 유형 / Contribution type
       options:
-        - 코드
-        - 문서
-        - 번역
-        - 데모
-        - 운영 자료
+        - 코드 / Code
+        - 문서 / Documentation
+        - 번역 / Translation
+        - 데모 / Demo
+        - 운영 자료 / Community materials
     validations:
       required: true
   - type: input
     id: assignee_alias
     attributes:
-      label: 담당자 별칭
-      description: 연락 가능한 공개 GitHub handle을 적습니다. Discord나 서버 등록은 필수 조건이 아닙니다.
-      placeholder: "예: community-contributor"
+      label: 담당자 별칭 / Contributor handle
+      description: 공개 GitHub handle을 적습니다. / Use a public GitHub handle; Discord or server registration is optional.
+      placeholder: "e.g. community-contributor"
     validations:
       required: true
   - type: input
     id: issue_branch
     attributes:
-      label: 이슈 브랜치
-      description: 이슈를 만든 뒤 실제 번호로 정합니다. 생성 전에는 미정으로 적어도 됩니다.
-      placeholder: "예: issue/123-short-name"
+      label: 이슈 브랜치 / Issue branch
+      description: 생성 후 실제 번호로 갱신합니다. / Use undecided until GitHub assigns the issue number.
+      placeholder: "e.g. issue/123-short-name"
     validations:
       required: true
   - type: input
     id: availability
     attributes:
-      label: 연락 가능 시간과 응답 기대 시간 (선택)
-      placeholder: "예: 평일 10:00–18:00 KST / 다음 영업일 응답"
+      label: 연락 가능 시간 (선택) / Availability (optional)
+      placeholder: "e.g. weekends, replies when available (include timezone)"
     validations:
       required: false
   - type: input
     id: mutation_window
     attributes:
-      label: 공유 자원 변경 시간창 (해당할 때만)
-      placeholder: "예: 2026-09-10 14:00–16:00 KST"
+      label: 공유 자원 변경 시간창 / Shared resource change window (if applicable)
+      placeholder: "e.g. 2026-09-10 14:00–16:00 KST"
     validations:
       required: false
   - type: dropdown
     id: deployment
     attributes:
-      label: 배포 필요 여부
+      label: 배포 필요 여부 / Deployment needed
       options:
-        - 배포 없음
-        - 운영 배포 필요(소유자 확인)
+        - 배포 없음 / None
+        - 운영 배포 필요(소유자 확인) / Production (owner approval required)
     validations:
       required: true
   - type: textarea
     id: validation_reproduction
     attributes:
-      label: 검증 명령과 재현 절차
-      description: 다른 참여자가 같은 결과를 확인할 수 있는 명령과 문서 경로를 적습니다.
+      label: 검증 명령과 재현 절차 / Checks and reproduction steps
+      description: 명령과 문서 경로를 적습니다. / Provide commands and document paths others can follow.
     validations:
       required: true
   - type: textarea
     id: risk
     attributes:
-      label: 영향 범위와 되돌리기
+      label: 영향 범위와 되돌리기 / Impact and rollback
     validations:
       required: true
   - type: checkboxes
     id: gate
     attributes:
-      label: 작업 전 확인
+      label: 작업 전 확인 / Before contributing
       options:
-        - label: 개인 브랜치에서 작업하며 main 병합 전 운영 배포나 DB 변경을 하지 않습니다.
+        - label: 개인 브랜치에서 작업하며 병합·배포·DB 변경 권한을 가정하지 않습니다. / I work in my own branch and do not assume merge, deployment or database permissions.
           required: true

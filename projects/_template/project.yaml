@@ -13,7 +13,7 @@ environments:
     url: "https://replace.example"
     database: never_store_credentials_here
 workspace:
-  ssh_home_pattern: "~/project-name"
+  local_home_pattern: "~/project-name"
   branch_pattern: "issue/<number>-<short-name>"
 roles:
   contributors: []

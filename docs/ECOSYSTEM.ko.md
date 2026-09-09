@@ -62,7 +62,7 @@
 
 `packages/shell/agent-pairing.json`을 Shell의 Agent/Memory 요구 버전 정본으로 삼는다. comm은 이를 복사해 독립적인 최신 버전표로 운영하지 않는다. 통합 기록에는 해당 파일을 포함한 Shell SHA와 실제 모든 component SHA를 적는다. KB Compiler·OS·웹 연동 등 파일에 없는 의존성은 별도로 기록한다. `main`끼리 맞추거나 clone 성공만으로 호환성을 선언하지 않는다.
 
-PR head로 한 검증은 병합 후 SHA의 검증과 구분한다. 변경된 SHA가 있으면 영향을 받는 검사를 다시 수행한다. [통합 기록](templates/INTEGRATION.md)을 이슈에 붙이거나 `integrations/`에 검토 가능한 문서로 제출한다. 원시 로그 대신 민감정보를 제거한 근거를 연결한다. 필수 OS·하드웨어 검사가 NOT_RUN이면 통합 승인/릴리스 완료로 표시하지 않는다.
+PR head로 한 검증은 병합 후 SHA의 검증과 구분한다. 변경된 SHA가 있으면 영향을 받는 검사를 다시 수행한다. [통합 기록](templates/INTEGRATION.md)을 이슈에 붙이거나 `integrations/`에 검토 가능한 문서로 제출한다(첫 기록을 제출할 때 디렉터리를 만든다). 원시 로그 대신 민감정보를 제거한 근거를 연결한다. 필수 OS·하드웨어 검사가 NOT_RUN이면 통합 승인/릴리스 완료로 표시하지 않는다.
 
 릴리스 후보는 기존 제품의 지원 OS 목록을 기준으로 설치/업데이트, 실행, Agent 연결, 기억 저장·재시작, 음성 입출력, 실패 복구를 확인한다. 변경과 관련 없는 항목은 이유 있는 N/A로 기록할 수 있다. maintainer는 제품별 빌드·의존성·라이선스 검사를 수행하고 release owner는 패키지 SHA/서명과 배포 대상을 확인한다. 기억 스키마 변경은 백업·이전 버전 호환·복구를 함께 확인하며 바이너리 다운그레이드만으로 데이터 복구를 약속하지 않는다.
 
@@ -77,6 +77,7 @@ naia-comm/
   projects/naia-agent/    선택적 로컬 clone (무시)
   projects/naia-memory/   선택적 로컬 clone (무시)
   projects/naia-kb-compiler/  선택적 로컬 clone (무시)
+  projects/naia-os/       OS 작업자만 선택적 로컬 clone (무시)
 ```
 
 ```bash
@@ -84,7 +85,7 @@ node scripts/workspace.mjs plan shell
 node scripts/workspace.mjs doctor shell
 ```
 
-`plan`은 읽기 전용으로 clone 명령을 출력한다. 원하는 명령을 실행한 뒤 각 repo README/AGENTS를 읽는다. 기존 디렉터리를 덮어쓰거나 checkout하지 않는다. 기본 clone은 이동하는 main의 탐색용이므로 Shell pairing에 따라 Agent/Memory를 해당 SHA로 별도 준비하고, 제품별 도구 설치와 빌드는 각 repo 안내를 따른다. 명령은 POSIX shell 기준이며 이 공통 저장소의 Windows 검증 환경은 WSL이다. 이것이 Windows 네이티브 제품 빌드 검증을 대신하지 않는다.
+`plan`은 읽기 전용으로 clone 명령을 출력한다. 원하는 명령을 실행한 뒤 각 repo README/AGENTS를 읽는다. 기존 디렉터리를 덮어쓰거나 checkout하지 않는다. 기본 clone은 이동하는 main의 탐색용이므로 Shell pairing에 따라 Agent/Memory를 해당 SHA로 별도 준비하고, 제품별 도구 설치와 빌드는 각 repo 안내를 따른다. 명령은 POSIX shell 기준이며 이 공통 저장소의 Windows 명령 지원 범위는 WSL이다. WSL에서 실제 검사를 실행했다는 의미는 아니다. 이것이 Windows 네이티브 제품 빌드 검증을 대신하지 않는다.
 
 제품을 수정하려면 대상 저장소를 GitHub에서 fork한다. `plan`의 clone은 공식 원격을 `origin`으로 갖기 때문에, 해당 clone 안에서 `git remote rename origin upstream` 후 `git remote add origin https://github.com/YOUR_GITHUB_HANDLE/대상저장소.git`으로 자신의 fork를 연결한다. 계정명과 저장소명을 실제 값으로 바꾸고 `git remote -v`로 확인한다. 이미 fork 원격이 구성돼 있으면 이 작업을 반복하지 않는다. 제품 PR의 base는 공식 저장소이며 브랜치·이슈 규칙은 제품 안내를 따른다.
 

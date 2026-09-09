@@ -3,11 +3,15 @@
 Read the repository root `AGENTS.md`, then `project.yaml` here.
 
 Naia open-source community operations: kickoff meetup planning, participation
-survey, organizer materials. A public-facing static survey page relays
-submissions to a private Discord channel via a serverless webhook proxy — no
-database, no PII or secrets committed to this repository.
+survey, organizer materials. The static survey is an archived local example,
+not the desktop application; it does not currently accept responses. The
+serverless relay contract is retained for a separately authorized future event.
+No database, PII or secrets are committed to this repository.
 
-- Keep secrets and participant IDs in the ignored `.runtime/` registry.
+- Local contributions require neither Discord nor a participant registry.
+  The legacy server adapter is disabled by default. If separately enabled, keep
+  participant IDs in ignored runtime configuration and credentials in the
+  operator environment, never in tracked files.
 - Record all work and validation in the GitHub issue. When deployment is
   requested, record development deployment, acceptance, production approval, and
   production deployment as required by the workflow. For a change that does

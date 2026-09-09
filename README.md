@@ -25,11 +25,11 @@ node scripts/workspace.mjs plan shell
 node scripts/workspace.mjs doctor shell
 ```
 
-원격 정본은 기존 `nextain/naia-comm-public`입니다. 로컬 이름은 `naia-comm`로 사용할 수 있습니다. 아래 참여 조사 사이트와 첫 미션은 그대로 이용할 수 있습니다.
+원격 정본은 기존 `nextain/naia-comm-public`입니다. 로컬 이름은 `naia-comm`로 사용할 수 있습니다. 참여 조사 사이트는 보관된 예제로 로컬 학습에 사용할 수 있으며, 현재 응답을 받지 않습니다. 첫 기여는 아래 온보딩을 따릅니다.
 
 ## 이 프로젝트가 안내하는 일
 
-참여자는 자신의 언어로 목적과 가능한 시작 시점을 설명하고 작은 미션 하나를 정해 시작합니다. 미션은 코드, 문서, 번역, 데모 또는 운영 자료가 될 수 있습니다. 이슈에는 결과, 담당 역할, 브랜치, 검증 명령, 재현 절차와 배포 필요 여부를 적습니다. 합의한 범위 안의 수정·검증·실패 후 재시도는 계속 진행할 수 있으며, 범위·역할·권한·배포 대상이 바뀔 때만 이슈에서 다시 합의합니다.
+참여자는 자신의 언어로 목적과 가능한 시작 시점을 설명하고 작은 미션 하나를 정해 시작합니다. 미션은 코드, 문서, 번역, 데모 또는 운영 자료가 될 수 있습니다. 이슈에는 결과, 담당 역할, 브랜치, 검증 명령, 재현 절차와 배포 필요 여부를 적습니다. 이슈에 적은 범위 안의 수정·검증·실패 후 재시도는 계속 진행할 수 있으며, 범위·역할·권한·배포 대상이 바뀔 때만 이슈에서 다시 합의합니다.
 
 역할은 권한을 분리합니다. contributor는 이슈 브랜치에서 작업하고 검토를 요청합니다. reviewer는 contributor와 독립적으로 변경과 완료 조건을 확인하고 요청사항을 남깁니다. integrator는 확인된 결과를 바탕으로 정책에 맞는 병합과 비배포 종료 기록을 담당합니다. release owner는 별도 승인 뒤 production 배포와 rollback을 담당합니다. `project.yaml`의 역할은 workflow 선언이며 실제 강제는 GitHub 저장소 권한, branch protection, protected environment와 저장소 변수로 이뤄집니다. maintainer가 이슈에서 reviewer와 integrator를 지정하지만 응답 시간은 보장하지 않습니다. 연락 가능 시간은 선택적으로 적고, 공유 자원 변경이 있을 때만 별도 변경 시간창을 합의하며, 문서와 로컬 검증 명령이 이 권한 설정을 자동으로 강제한다고 주장하지 않습니다.
 
@@ -95,7 +95,7 @@ python3 -m http.server 8080
 
 ## 실행 가능한 첫 문서 미션
 
-처음에는 [한국어 기여 안내](CONTRIBUTING.ko.md)의 문서 미션을 실행합니다. 자동 smoke test는 `.git` 없는 임시 fixture에서 README 한 파일만 수정해 중복·anchor 실패·검증·rollback을 확인합니다. 실제 기여는 자신의 fork와 이슈 브랜치에서 같은 절차를 따라 수행하고, 결과를 검토 요청으로 제출하며 자동 fixture의 성공을 실제 merge나 배포의 증거로 해석하지 않습니다.
+처음에는 [한국어 기여 안내](CONTRIBUTING.ko.md)의 문서 미션을 실행합니다. 수동 연습 문장을 되돌린 뒤 자동 검사를 실행합니다. 자동 smoke test는 `.git` 없는 임시 fixture에서 README 한 파일만 수정해 중복·anchor 실패·검증·rollback을 확인합니다. 실제 기여는 자신의 fork와 이슈 브랜치에서 같은 절차를 따라 수행하고, 결과를 검토 요청으로 제출하며 자동 fixture의 성공을 실제 merge나 배포의 증거로 해석하지 않습니다.
 
 ```bash
 npm run test:first-mission
@@ -105,4 +105,4 @@ npm run test:first-mission
 
 공개 대상으로 승인되는 소스와 문서는 [Apache License 2.0](LICENSE)에 따라 배포합니다. Apache 권한은 이 저장소의 코드와 문서 범위에만 적용되며 Naia·Nextain 상표, 스토어 문안·출판물 또는 제3자 이미지·NVA(아바타 설명 형식)·VRM(3D 아바타 파일 형식)의 권리를 부여하지 않습니다. 별도 조건은 [NOTICE](docs/store-submission-v0.2.1/NOTICE.md)의 범위와 원자산 고지를 함께 확인합니다. 공개된 캐릭터와 로고의 승인 범위는 [공개 자산 고지](NOTICE-PUBLIC-ASSETS.md)에 기록합니다.
 
-자세한 내용은 [운영 절차](docs/WORKFLOW.ko.md), [Discord 협업 설계](docs/DISCORD.ko.md), [도입 안내](docs/ADOPTION.ko.md)를 참고합니다.
+자세한 내용은 [운영 절차](docs/WORKFLOW.ko.md), [Discord와 GitHub를 함께 쓰는 방법](docs/DISCORD.ko.md), [도입 안내](docs/ADOPTION.ko.md)를 참고합니다.

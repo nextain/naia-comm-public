@@ -56,10 +56,13 @@ export function pairingFindings(pairing, heads) {
 
 export async function doctor(catalog, profile, workspaceRoot = root, git = defaultGit) {
   const repos = selectRepositories(catalog, profile);
+  // The caller's workspace may itself use a platform alias (macOS /var -> /private/var).
+  // Resolve that boundary once; symlinks inside the workspace remain invalid.
+  const base = await fs.realpath(workspaceRoot);
   const heads = {};
   const findings = [];
   for (const repo of repos) {
-    const directory = path.join(workspaceRoot, repo.path);
+    const directory = path.join(base, repo.path);
     try {
       // realpath/root checks reject symlinked clones and accidental parent-repo discovery.
       const stat = await fs.lstat(directory);
@@ -78,7 +81,7 @@ export async function doctor(catalog, profile, workspaceRoot = root, git = defau
   }
   if (repos.some(repo => repo.id === 'naia-shell')) {
     try {
-      const pairingFile = path.join(workspaceRoot, 'projects/naia-shell/packages/shell/agent-pairing.json');
+      const pairingFile = path.join(base, 'projects/naia-shell/packages/shell/agent-pairing.json');
       if (await fs.realpath(pairingFile) !== path.resolve(pairingFile)) throw new Error('symlinked pairing');
       const pairing = JSON.parse(await fs.readFile(pairingFile, 'utf8'));
       findings.push(...pairingFindings(pairing, heads));

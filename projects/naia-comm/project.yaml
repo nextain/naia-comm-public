@@ -23,7 +23,8 @@ roles:
   release_owners: [community-release-owner]
   reviewers: []
 discord:
-  enabled: true
+  # Optional legacy server adapter; ordinary local contributors need no registry.
+  enabled: false
   project_alias: naia-comm
   bot_token_env: DISCORD_BOT_TOKEN
   runtime_registry: .runtime/participants.json

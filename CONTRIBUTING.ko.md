@@ -8,7 +8,7 @@
 
 제품 문제는 해당 제품의 이슈에, 커뮤니티 안내 문제는 [공개 이슈](https://github.com/nextain/naia-comm-public/issues)에 남깁니다. 작은 결과와 확인 방법을 적으면 시작할 수 있습니다. Discord나 maintainer의 사전 응답은 필요하지 않습니다.
 
-브라우저로 문서를 고칠 때는 이슈를 먼저 만들어 번호를 받은 뒤 **Fork → 자신의 fork의 브랜치 선택 메뉴 → `issue/실제번호-short-name` 생성 → 파일의 연필 버튼 → 해당 브랜치에 commit** 순서로 진행합니다. GitHub의 기본 자동 브랜치 이름은 이 저장소 CI 규칙에 맞지 않을 수 있습니다. 이후 아래 **커밋·push·PR 제출** 절차의 웹 화면 안내를 따릅니다. 실행하지 못한 로컬 검사는 `NOT_RUN`으로 적고 PR의 GitHub Actions 결과를 기다립니다. 제품 전체 clone은 필요하지 않습니다.
+브라우저로 문서를 고칠 때는 이슈를 먼저 만들어 번호를 받은 뒤 **Fork → 자신의 fork의 브랜치 선택 메뉴 → `issue/실제번호-short-name` 생성 → 파일의 연필 버튼 → 해당 브랜치에 commit** 순서로 진행합니다. GitHub의 기본 자동 브랜치 이름은 이 저장소 CI 규칙에 맞지 않을 수 있습니다. 이후 아래 **커밋·push·PR 제출** 절차의 웹 화면 안내를 따릅니다. 실행하지 못한 로컬 검사는 `NOT_RUN`으로 적고 PR의 GitHub Actions 결과를 기다립니다. 첫 fork PR의 Actions 실행에는 maintainer의 실행 승인이 필요할 수 있습니다. 이는 로컬 기여 시작 승인과 별개입니다. 제품 전체 clone은 필요하지 않습니다.
 
 ## 시작 전 확인
 
@@ -30,7 +30,9 @@ sed -n '1,220p' projects/naia-comm/project.yaml
 npm test
 ```
 
-SSH를 사용하려면 `git@github.com:<your-account>/naia-comm-public.git`와 `git@github.com:nextain/naia-comm-public.git`를 각각 fork와 upstream 주소로 사용합니다. 실제 이슈의 완료 조건, 기여 유형, 담당 역할, 배포 필요 여부와 대상을 먼저 기록합니다. 연락 가능 시간과 응답 기대 시간은 선택 사항이며 공유 자원을 변경할 때만 시간창을 합의합니다. 시간창 문서는 약속을 설명할 뿐 자동 권한 검사가 아닙니다. 역할 선언의 실제 enforcement는 GitHub 저장소 권한, branch protection, protected environment와 저장소 변수에서 확인하며, 이슈의 reviewer 지정은 권한을 부여하거나 응답 시간을 보장하지 않습니다.
+추적된 `projects/naia-comm/site`는 보관된 참여 조사 사이트 예제입니다. Naia 데스크톱 앱은 대상 제품 저장소에서 개발합니다.
+
+SSH를 사용하려면 `git@github.com:YOUR_GITHUB_HANDLE/naia-comm-public.git`와 `git@github.com:nextain/naia-comm-public.git`를 각각 fork와 upstream 주소로 사용합니다. 실제 이슈의 완료 조건, 기여 유형, 담당 역할, 배포 필요 여부와 대상을 먼저 기록합니다. 연락 가능 시간과 응답 기대 시간은 선택 사항이며 공유 자원을 변경할 때만 시간창을 합의합니다. 시간창 문서는 약속을 설명할 뿐 자동 권한 검사가 아닙니다. 역할 선언의 실제 enforcement는 GitHub 저장소 권한, branch protection, protected environment와 저장소 변수에서 확인하며, 이슈의 reviewer 지정은 권한을 부여하거나 응답 시간을 보장하지 않습니다.
 
 ## 범위·역할·연락 경로
 
@@ -63,19 +65,26 @@ SSH를 사용하려면 `git@github.com:<your-account>/naia-comm-public.git`와 `
 `npm run test:first-mission`은 `.git` 없는 임시 fixture에서 수행하는 자동 smoke test입니다. 아래 단계는 자신의 fork의 실제 이슈 브랜치에서 수행하는 수동 미션이며, 결과를 검토 요청에 사용한 뒤 필요하면 명령에 따라 되돌립니다. 자동 fixture의 통과는 실제 branch의 merge나 배포를 증명하지 않습니다.
 
 ```bash
-if [ -n "$(git status --porcelain)" ]; then
-  echo "working tree is not clean; stop before updating or creating the practice branch"
-  exit 1
-fi
-git fetch upstream
-git switch main
-git pull --ff-only upstream main
-if [ -n "$(git status --porcelain)" ]; then
-  echo "working tree changed while updating; stop before creating the practice branch"
-  exit 1
-fi
-git switch -c issue/123-docs-onboarding
+(
+  set -e
+  mission_status=$(git status --porcelain)
+  if [ -n "$mission_status" ]; then
+    echo "working tree is not clean; stop before updating or creating the practice branch"
+    exit 1
+  fi
+  git fetch upstream
+  git switch main
+  git pull --ff-only upstream main
+  mission_status=$(git status --porcelain)
+  if [ -n "$mission_status" ]; then
+    echo "working tree changed while updating; stop before creating the practice branch"
+    exit 1
+  fi
+  git switch -c issue/123-docs-onboarding
+)
 ```
+
+준비 블록은 괄호 안의 별도 shell에서 실행되므로 실패하면 그 블록만 멈춥니다. 사용 중인 터미널은 종료하지 않습니다.
 
 아래 한 문장 추가는 로컬 연습입니다. 동일한 연습 문장을 매번 PR로 제출하지 않습니다. 제출할 첫 기여는 실제로 발견한 오타·누락 안내 등 유용한 수정으로 고릅니다. 다음 Python 블록으로 `README.md`의 기존 문장 뒤에 한 문장을 추가합니다.
 
@@ -84,7 +93,7 @@ python3 - <<'PY'
 from pathlib import Path
 
 path = Path("README.md")
-anchor = "자세한 내용은 [운영 절차](docs/WORKFLOW.ko.md), [Discord 협업 설계](docs/DISCORD.ko.md), [도입 안내](docs/ADOPTION.ko.md)를 참고합니다."
+anchor = "자세한 내용은 [운영 절차](docs/WORKFLOW.ko.md), [Discord와 GitHub를 함께 쓰는 방법](docs/DISCORD.ko.md), [도입 안내](docs/ADOPTION.ko.md)를 참고합니다."
 addition = " 문서 미션의 결과는 같은 명령으로 다시 확인할 수 있어야 합니다."
 text = path.read_text(encoding="utf-8")
 if addition in text:
@@ -99,7 +108,7 @@ git diff -- README.md
 git diff --stat
 ```
 
-이 연습의 `anchor`는 `README.md` 안내 문장과 byte 단위로 결합된 계약입니다. 문장을 바꾸면 위 Python 블록의 `anchor` 대입값도 함께 갱신하고 `npm run test:first-mission`으로 중복·누락 검사를 다시 실행합니다.
+이 연습의 `anchor`는 `README.md` 안내 문장과 byte 단위로 결합된 계약입니다. 문장을 바꾸면 위 Python 블록의 `anchor` 대입값도 함께 갱신하고 `npm run test:first-mission`으로 중복·누락 검사를 다시 실행합니다. 자동 검사는 이 절 제목, `bash` 코드 블록과 Python의 `anchor`·`addition` 대입문을 찾아 실행하므로 구조를 바꾸면 `scripts/test-first-mission.mjs`도 함께 확인합니다. 수동 연습 문장이 남아 있으면 중복 검사에서 실패하므로 아래 복구 후 실행합니다.
 
 `npm run test:first-mission`은 이 문서에서 Python 블록을 추출해 `.git` 없는 임시 fixture에서 자동으로 실행하는 별도 smoke test입니다. 그 자동 검사는 fixture에서만 동작하므로 실제 branch의 README를 바꾸지 않습니다. 위의 수동 연습을 끝내면 diff를 확인합니다. README에 이 연습 변경만 있을 때 다음 명령으로 되돌립니다. 다른 변경이 섞여 있으면 restore하지 말고 편집기로 연습 문장만 제거합니다.
 

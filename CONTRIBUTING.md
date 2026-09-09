@@ -10,7 +10,7 @@ Open an issue with a small outcome, acceptance criteria and reproduction steps. 
 
 ## Contribute in your browser
 
-For a small documentation edit, no local tool installation or product clone is required. Create the issue in the upstream repository, then **Fork → your fork's branch menu → create `issue/ACTUAL-NUMBER-short-name` → edit the file with the pencil button → commit to that branch**. Replace `ACTUAL-NUMBER`; GitHub's automatically named edit branches may fail this repository's CI rule. Follow the PR instructions below. Report local tests as `NOT_RUN` and wait for GitHub Actions and review; do not claim local execution.
+For a small documentation edit, no local tool installation or product clone is required. Create the issue in the upstream repository, then **Fork → your fork's branch menu → create `issue/ACTUAL-NUMBER-short-name` → edit the file with the pencil button → commit to that branch**. Replace `ACTUAL-NUMBER`; GitHub's automatically named edit branches may fail this repository's CI rule. Follow the PR instructions below. Report local tests as `NOT_RUN` and wait for GitHub Actions and review; do not claim local execution. A maintainer may need to approve Actions execution for a first fork PR; this is separate from permission to begin contributing.
 
 ## Set up a local contribution
 
@@ -24,9 +24,9 @@ cd naia-comm
 git remote add upstream https://github.com/nextain/naia-comm-public.git
 ```
 
-Read [AGENTS.md](AGENTS.md), [project policy](.agents/context/project-policy.yaml), [workflow](.agents/context/workflow.yaml), [site adapter entrypoint](projects/naia-comm/AGENTS.md) and [project facts](projects/naia-comm/project.yaml). The tracked `projects/naia-comm/site` directory is the participation survey site; it is not the Naia desktop application.
+Read [AGENTS.md](AGENTS.md), [project policy](.agents/context/project-policy.yaml), [workflow](.agents/context/workflow.yaml), [site adapter entrypoint](projects/naia-comm/AGENTS.md) and [project facts](projects/naia-comm/project.yaml). The tracked `projects/naia-comm/site` directory is an archived participation survey example and does not currently accept responses; the Naia desktop application lives in its product repository.
 
-Run `npm test` and `npm run test:first-mission` to check your environment. The latter performs a documented README edit in a temporary fixture, rejects duplicate/missing anchors and rolls it back without modifying your working files. It is a practice check; do not submit its repeated sample sentence as a contribution. Pick a real typo, missing instruction or other useful improvement for your PR.
+Run `npm test` and `npm run test:first-mission` to check your environment. The latter performs a documented README edit in a temporary fixture, rejects duplicate/missing anchors and rolls it back without modifying your working files. Remove the manual practice sentence before running it, or its duplicate check will fail. It is a practice check; do not submit its repeated sample sentence as a contribution. Pick a real typo, missing instruction or other useful improvement for your PR.
 
 Before updating, `git status --short` must be empty. Save unrelated work separately if it is not. Stop on command errors; do not force-reset or force-push to get past them. Replace `123` with the actual **upstream** issue number:
 

@@ -57,7 +57,7 @@ git status --short
 git diff --stat
 ```
 
-제출 기록에는 이슈 번호, 커밋 SHA, 변경 파일과 범위, 실행 명령과 결과, 알려진 제한 사항, 다른 사람이 따를 재현 절차, 배포 필요 여부를 포함합니다. 검증이 실패하면 원인과 현재 상태를 적고 합의한 범위 안에서 수정·재시도합니다. 범위나 권한이 바뀌면 담당자와 다시 합의합니다.
+제출 기록에는 이슈 번호, 커밋 SHA, 변경 파일과 범위, 실행 명령과 결과, 알려진 제한 사항, 다른 사람이 따를 재현 절차, 배포 필요 여부를 포함합니다. 검증이 실패하면 원인과 현재 상태를 적고 이슈에 적은 범위 안에서 수정·재시도합니다. 범위나 권한이 바뀌면 담당자와 다시 합의합니다.
 
 현재 `npm test`는 workspace 계획·checkout 점검 테스트, `scripts/validate.mjs`의 구조 검사, `scripts/test-site-submit.mjs`의 사이트 제출 API 계약, NUL 경로를 쓰는 이력 검사 fixture와 `scripts/public-safety-scan.mjs`의 공개 안전성 검사를 실행합니다. `npm run test:first-mission`은 신규 참여자 문서의 성공·실패·복구 경로를 fixture에서 실행합니다. 두 명령 모두 `.agents/context/*.yaml`의 상태 전이와 독립 검토자 조건을 실행하거나 Discord·사이트·Azure Functions·배포를 검증하는 명령은 아닙니다. YAML 정책 선언은 integrator가 이슈 증거와 함께 확인해야 합니다.
 
