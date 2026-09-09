@@ -14,3 +14,7 @@ coverage/
 /projects/naia-memory/
 /projects/naia-kb-compiler/
 /projects/naia-os/
+
+# per-machine harness runtime state, never tracked
+.agents/session-contracts/
+.agents/harness/
