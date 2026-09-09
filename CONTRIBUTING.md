@@ -19,8 +19,8 @@ This community repository needs Node.js **20.11 or newer**, npm, Git **2.50 or n
 Create a fork with **Fork → Create new fork** on GitHub. Replace `YOUR_GITHUB_HANDLE` before running:
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_HANDLE/naia-comm-public.git naia-comm
-cd naia-comm
+git clone https://github.com/YOUR_GITHUB_HANDLE/naia-comm-public.git naia-comm-public
+cd naia-comm-public
 git remote add upstream https://github.com/nextain/naia-comm-public.git
 ```
 

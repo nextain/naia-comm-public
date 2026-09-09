@@ -4,7 +4,7 @@
 
 ## 선택과 근거
 
-`naia-comm`를 커뮤니티의 공동 작업 안내와 저장소 간 조율의 정본으로 사용한다. 제품 소스와 릴리스는 각 저장소에 유지한다. 현재 원격은 [nextain/naia-comm-public](https://github.com/nextain/naia-comm-public)이며 로컬 디렉터리 이름은 `naia-comm`를 권장한다. 원격 이름 변경은 링크·배포 연동을 확인하는 별도 작업이다.
+이 저장소 [nextain/naia-comm-public](https://github.com/nextain/naia-comm-public)은 커뮤니티 참여자를 위한 공개 안내와 공개 RFC 논의의 자리다. 제품 소스와 릴리스는 각 제품 저장소에 있다. 핵심 커미터 사이의 저장소 간 조율, 기기별 QA 회차, 세션 인계는 maintainer 들의 비공개 조율 저장소에서 운영하며, 그 결과는 각 제품 저장소의 이슈와 이 저장소의 공개 문서로 나온다. 이 문서는 공개 참여자가 알아야 할 절차만 적는다.
 
 | 선택지 | 장점 | 비용과 판단 |
 | --- | --- | --- |
@@ -24,7 +24,8 @@
 | 기억 저장·검색 | `nextain/naia-memory` |
 | 지식 컴파일 | `nextain/naia-kb-compiler` |
 | OS 이미지·패키징 | `nextain/naia-os` (해당 작업자만 clone) |
-| 첫 기여·운영·여러 저장소에 걸친 기능·통합 증거 | `nextain/naia-comm-public` |
+| 첫 기여 안내·공개 RFC 논의·공개 운영 자료 | `nextain/naia-comm-public` |
+| 핵심 커미터의 저장소 간 조율·기기별 QA 회차·세션 인계 | maintainer 들의 비공개 조율 저장소 (결과는 제품 이슈로 공개) |
 
 전체 확인 목록은 [repository catalog](../workspace/repos.json)에 둔다. 단일 저장소 작업에는 comm 이슈를 중복 생성하지 않는다. 잘못 접수된 이슈는 권한이 있으면 transfer하고, 그렇지 않으면 담당 저장소 링크를 남겨 연결한다. 이슈 키는 항상 `owner/repo#number`다. Discord 스레드와 통합 문서에서는 `#123`만 사용하지 않는다.
 

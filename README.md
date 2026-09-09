@@ -1,6 +1,6 @@
 # naia-comm
 
-`naia-comm`는 Naia 오픈소스 커뮤니티의 첫 기여, 여러 제품 저장소의 공동 작업, 통합 검증과 공개 운영 자료를 관리하는 공통 저장소입니다. 공개 참여자는 자신의 fork에서 작은 결과를 만들고, 이슈와 pull request로 재현 가능한 증거를 제출합니다.
+`naia-comm-public`은 Naia 오픈소스 커뮤니티의 첫 기여 안내, 공개 RFC 논의, 참여 조사와 공개 운영 자료를 담는 공개 저장소입니다. 핵심 커미터 사이의 저장소 간 조율과 기기별 QA 회차는 maintainer 들의 비공개 조율 저장소에서 운영하고, 결과는 각 제품 저장소의 이슈로 공개됩니다. 공개 참여자는 자신의 fork에서 작은 결과를 만들고, 이슈와 pull request로 재현 가능한 증거를 제출합니다.
 
 저장소에서 지키는 기준은 다음과 같습니다.
 
@@ -25,7 +25,7 @@ node scripts/workspace.mjs plan shell
 node scripts/workspace.mjs doctor shell
 ```
 
-원격 정본은 기존 `nextain/naia-comm-public`입니다. 로컬 이름은 `naia-comm`로 사용할 수 있습니다. 참여 조사 사이트는 보관된 예제로 로컬 학습에 사용할 수 있으며, 현재 응답을 받지 않습니다. 첫 기여는 아래 온보딩을 따릅니다.
+이 저장소의 원격은 `nextain/naia-comm-public`입니다. 로컬 디렉터리 이름은 `naia-comm-public`을 권장합니다. 다른 이름을 쓰면 비공개 조율 저장소와 혼동하기 쉽습니다. 참여 조사 사이트는 보관된 예제로 로컬 학습에 사용할 수 있으며, 현재 응답을 받지 않습니다. 첫 기여는 아래 온보딩을 따릅니다.
 
 ## 이 프로젝트가 안내하는 일
 
@@ -58,8 +58,8 @@ GitHub 저장소 화면에서 **Fork → Create new fork**를 눌러 자신의 �
 `YOUR_GITHUB_HANDLE`을 자신의 GitHub 계정명으로 바꾼 뒤 실행합니다.
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_HANDLE/naia-comm-public.git naia-comm
-cd naia-comm
+git clone https://github.com/YOUR_GITHUB_HANDLE/naia-comm-public.git naia-comm-public
+cd naia-comm-public
 git remote add upstream https://github.com/nextain/naia-comm-public.git
 sed -n '1,220p' AGENTS.md
 sed -n '1,220p' .agents/context/project-policy.yaml

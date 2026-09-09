@@ -11,8 +11,8 @@ GitHub에서 자신의 fork를 만든 뒤 저장소를 복제하고 정책과 �
 `YOUR_GITHUB_HANDLE`을 자신의 GitHub 계정명으로 바꾼 뒤 실행합니다.
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_HANDLE/naia-comm-public.git naia-comm
-cd naia-comm
+git clone https://github.com/YOUR_GITHUB_HANDLE/naia-comm-public.git naia-comm-public
+cd naia-comm-public
 git remote add upstream https://github.com/nextain/naia-comm-public.git
 sed -n '1,220p' AGENTS.md
 sed -n '1,220p' .agents/context/project-policy.yaml

@@ -19,8 +19,8 @@ GitHub에서 **Fork**를 눌러 자신의 계정을 소유자로 하는 fork를 
 `YOUR_GITHUB_HANDLE`을 자신의 GitHub 계정명으로 바꾼 뒤 실행합니다.
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_HANDLE/naia-comm-public.git naia-comm
-cd naia-comm
+git clone https://github.com/YOUR_GITHUB_HANDLE/naia-comm-public.git naia-comm-public
+cd naia-comm-public
 git remote add upstream https://github.com/nextain/naia-comm-public.git
 sed -n '1,220p' AGENTS.md
 sed -n '1,220p' .agents/context/project-policy.yaml
