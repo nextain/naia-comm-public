@@ -156,7 +156,7 @@ function main() {
     const readmePath = join(fixture, 'README.md');
     const readmeBefore = readFileSync(readmePath);
     const readmeText = readmeBefore.toString('utf8');
-    assert.ok(readmeText.includes(mission.anchor), 'fixture README must contain the documented anchor; keep CONTRIBUTING.ko.md:84 in sync');
+    assert.ok(readmeText.includes(mission.anchor), 'fixture README must contain the documented anchor; keep CONTRIBUTING.ko.md Python anchor in sync');
 
     const first = runMission(fixture, mission.python);
     assertSuccessfulMission(first);

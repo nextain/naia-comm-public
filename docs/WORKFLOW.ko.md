@@ -8,31 +8,34 @@
 
 GitHub에서 자신의 fork를 만든 뒤 저장소를 복제하고 정책과 프로젝트 사실을 읽습니다.
 
+`YOUR_GITHUB_HANDLE`을 자신의 GitHub 계정명으로 바꾼 뒤 실행합니다.
+
 ```bash
-git clone https://github.com/<your-account>/naia-comm-public.git
-cd naia-comm-public
+git clone https://github.com/YOUR_GITHUB_HANDLE/naia-comm-public.git naia-comm
+cd naia-comm
 git remote add upstream https://github.com/nextain/naia-comm-public.git
 sed -n '1,220p' AGENTS.md
 sed -n '1,220p' .agents/context/project-policy.yaml
 sed -n '1,220p' .agents/context/workflow.yaml
+sed -n '1,220p' projects/naia-comm/AGENTS.md
 sed -n '1,220p' projects/naia-comm/project.yaml
 npm test
 ```
 
 읽기, 정책 확인, `npm test`, `npm run test:first-mission`, `git diff --check`, 정적 화면의 로컬 확인은 외부 변경이 없는 활동입니다. 정적 화면은 `cd projects/naia-comm/site && python3 -m http.server 8080`으로 띄우고 브라우저에서 `http://localhost:8080/`을 확인합니다. 이 확인은 정적 HTML·CSS·이미지 경로에 한정하며 `/api`나 배포 성공을 증명하지 않습니다.
 
-파일 수정, 브랜치 생성, commit과 push는 변경 활동(mutation)입니다. 처음 실제 기여의 범위·완료 조건·담당자·가능한 시간·배포 필요 여부를 GitHub 이슈에 적고 담당자와 1:1로 시작을 합의합니다. 합의된 범위 안의 수정·검증·실패 후 재시도는 추가 응답이나 재승인 없이 계속할 수 있습니다. 범위·권한·배포 대상·실제 변경 허용 시간이 바뀔 때만 이슈에 기록하고 다시 합의합니다. 개인 학습용 읽기와 자신의 임시 브랜치 실습은 별도 1:1 응답을 기다리지 않고 할 수 있지만 외부 변경은 하지 않습니다. 병합·배포·데이터베이스(DB) 변경·공개 전환은 별도 역할과 승인이 필요한 운영 활동입니다.
+공개 자료를 자신의 로컬 환경·fork에서 수정·검증·commit·push하고 PR로 제안하는 데 1:1 시작 승인이나 작업 시간창은 필요하지 않습니다. 실제 제출은 GitHub 이슈에 작은 범위·완료 조건·담당자·배포 여부를 연결합니다. 중복 작업, 큰 설계 변경과 저장소 간 호환성 변경은 해당 maintainer와 조율합니다. 범위 안의 수정·검증·실패 후 재시도는 계속 진행할 수 있습니다.
 
-연락 가능한 시간과 응답 기대 시간, 실제 파일 수정·commit을 허용하는 변경 활동 시간창을 이슈에 따로 적습니다. 이 구분은 담당자 사이의 서면 약속이며, 현재 문서와 검증 명령이 자동 집행한다고 주장하지 않습니다.
+연락 가능한 시간과 응답 기대 시간은 선택입니다. 공유 자원을 실제로 변경할 때만 권한자와 대상·시간창을 합의합니다. `main` 병합·배포·DB 변경·비공개 자료 공개에는 해당 역할과 승인이 필요합니다. 상세한 초보자 명령과 문제 해결은 [온보딩](../CONTRIBUTING.ko.md)을 따릅니다.
 
 현재 `project.yaml`은 기본 브랜치와 통합 브랜치를 모두 `main`으로 선언합니다. fork의 `origin`과 원본 저장소를 가리키는 `upstream`에서 확인한 정책을 기준으로 하며, `dev` 브랜치를 만들거나 존재한다고 가정하지 않습니다. 원격 브랜치 정책이 바뀌면 `project.yaml`과 이 문서를 함께 갱신합니다.
 
 ## 이슈와 첫 작업
 
 1. 작은 미션과 완료 조건을 이슈에 적습니다. 코드, 문서, 번역, 데모, 운영 자료 중 하나를 고릅니다.
-2. 역할, 연락 가능한 시간·응답 기대 시간, 실제 변경 허용 시간창, 다음 공유 시점과 시작 합의 담당자를 적습니다.
+2. 담당자의 공개 handle을 적습니다. 연락 시간은 선택이고, 변경 시간창은 공유 자원 작업에만 해당합니다. reviewer가 미정이면 미정으로 둡니다.
 3. 배포 필요 여부와 대상 환경을 적습니다. `project.yaml`에 명령이 없으면 배포 명령을 발명하지 않습니다.
-4. 합의된 이슈 번호로 기본 브랜치에서 이슈 브랜치를 만듭니다.
+4. 생성된 실제 이슈 번호로 기본 브랜치에서 이슈 브랜치를 만듭니다. 먼저 깨끗한 작업 상태인지 확인하고, 같은 브랜치가 이미 있으면 재생성하지 않습니다.
 
 ```bash
 git fetch upstream
@@ -56,7 +59,7 @@ git diff --stat
 
 제출 기록에는 이슈 번호, 커밋 SHA, 변경 파일과 범위, 실행 명령과 결과, 알려진 제한 사항, 다른 사람이 따를 재현 절차, 배포 필요 여부를 포함합니다. 검증이 실패하면 원인과 현재 상태를 적고 합의한 범위 안에서 수정·재시도합니다. 범위나 권한이 바뀌면 담당자와 다시 합의합니다.
 
-현재 `npm test`는 `scripts/validate.mjs`의 구조 검사, `scripts/test-site-submit.mjs`의 사이트 제출 API 계약, NUL 경로를 쓰는 이력 검사 fixture와 `scripts/public-safety-scan.mjs`의 공개 안전성 검사를 실행합니다. `npm run test:first-mission`은 신규 참여자 문서의 성공·실패·복구 경로를 fixture에서 실행합니다. 두 명령 모두 `.agents/context/*.yaml`의 상태 전이와 독립 검토자 조건을 실행하거나 Discord·사이트·Azure Functions·배포를 검증하는 명령은 아닙니다. YAML 정책 선언은 integrator가 이슈 증거와 함께 확인해야 합니다.
+현재 `npm test`는 workspace 계획·checkout 점검 테스트, `scripts/validate.mjs`의 구조 검사, `scripts/test-site-submit.mjs`의 사이트 제출 API 계약, NUL 경로를 쓰는 이력 검사 fixture와 `scripts/public-safety-scan.mjs`의 공개 안전성 검사를 실행합니다. `npm run test:first-mission`은 신규 참여자 문서의 성공·실패·복구 경로를 fixture에서 실행합니다. 두 명령 모두 `.agents/context/*.yaml`의 상태 전이와 독립 검토자 조건을 실행하거나 Discord·사이트·Azure Functions·배포를 검증하는 명령은 아닙니다. YAML 정책 선언은 integrator가 이슈 증거와 함께 확인해야 합니다.
 
 ## 배포가 필요한 변경
 
@@ -89,8 +92,8 @@ git diff --stat
 
 ## 금지 사항
 
-- 이슈 범위와 시작 합의 없이 실제 기여의 파일을 수정·commit·push하지 않습니다. 이미 합의한 범위의 수정·검증·재시도는 계속할 수 있습니다.
+- 타인의 작업을 덮어쓰거나 이슈 범위를 조용히 바꾸지 않습니다. 자신의 로컬 작업과 fork 제출은 사전 1:1 승인 없이 진행할 수 있습니다.
 - contributor 브랜치에서 운영 서버로 직접 배포하지 않습니다.
 - Discord 요청만으로 병합·배포·DB 변경·공개 전환을 실행하지 않습니다.
 - 비밀번호, 토큰, 개인 ID, 사설 호스트·IP, 고객 데이터와 운영 토폴로지를 기록하지 않습니다.
-- 정확한 SHA 검수와 소유자 승인 없이 저장소를 공개하거나 외부 저장소에 게시하지 않습니다.
+- 비공개 자료의 신규 공개·저장소 공개 전환은 정확한 SHA 검수와 소유자 승인 없이 하지 않습니다. 이미 공개된 자료의 fork 기여는 온보딩 절차를 따릅니다.

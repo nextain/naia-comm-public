@@ -84,7 +84,16 @@ node scripts/workspace.mjs plan shell
 node scripts/workspace.mjs doctor shell
 ```
 
-`plan`은 읽기 전용으로 clone 명령을 출력한다. 원하는 명령을 실행한 뒤 각 repo README/AGENTS를 읽는다. 기존 디렉터리를 덮어쓰거나 checkout하지 않는다. 기본 clone은 이동하는 main의 탐색용이므로 Shell pairing에 따라 Agent/Memory를 해당 SHA로 별도 준비하고, 제품별 도구 설치와 빌드는 각 repo 안내를 따른다. 명령은 POSIX shell 기준이며 Windows에서는 Git Bash/WSL에서 사용한다. 이것이 Windows 네이티브 제품 빌드 검증을 대신하지 않는다.
+`plan`은 읽기 전용으로 clone 명령을 출력한다. 원하는 명령을 실행한 뒤 각 repo README/AGENTS를 읽는다. 기존 디렉터리를 덮어쓰거나 checkout하지 않는다. 기본 clone은 이동하는 main의 탐색용이므로 Shell pairing에 따라 Agent/Memory를 해당 SHA로 별도 준비하고, 제품별 도구 설치와 빌드는 각 repo 안내를 따른다. 명령은 POSIX shell 기준이며 이 공통 저장소의 Windows 검증 환경은 WSL이다. 이것이 Windows 네이티브 제품 빌드 검증을 대신하지 않는다.
+
+제품을 수정하려면 대상 저장소를 GitHub에서 fork한다. `plan`의 clone은 공식 원격을 `origin`으로 갖기 때문에, 해당 clone 안에서 `git remote rename origin upstream` 후 `git remote add origin https://github.com/YOUR_GITHUB_HANDLE/대상저장소.git`으로 자신의 fork를 연결한다. 계정명과 저장소명을 실제 값으로 바꾸고 `git remote -v`로 확인한다. 이미 fork 원격이 구성돼 있으면 이 작업을 반복하지 않는다. 제품 PR의 base는 공식 저장소이며 브랜치·이슈 규칙은 제품 안내를 따른다.
+
+새 main clone의 pairing이 맞지 않으면 다음 순서로 확인한다.
+
+1. Shell의 `packages/shell/agent-pairing.json`을 읽고 `agentCommit`·`memoryCommit`을 확인한다.
+2. Agent와 Memory 각각 `git status --short`가 비어 있는지 확인한다. 작업이 있으면 먼저 보존하고 checkout을 멈춘다.
+3. 각 clone 안에서 공식 원격을 fetch한 뒤 `git switch --detach 실제요구SHA`로 정확한 커밋을 준비한다. 위에서 원격을 바꿨다면 `git fetch upstream`, 바꾸지 않았다면 공식 `origin`을 fetch한다. 커밋을 찾을 수 없으면 담당 저장소에 문의하고 임의의 main으로 대체하지 않는다.
+4. 공통 저장소 루트에서 `node scripts/workspace.mjs doctor shell`을 다시 실행한다. 제품 변경을 시작할 때는 제품 정책에 맞는 작업 브랜치를 별도로 만든다. dirty 상태를 숨기려고 작업을 삭제하지 않는다.
 
 `doctor`는 clone 유무·Git root·HEAD·dirty 상태·Agent/Memory pairing을 확인한다. 제품 코드를 실행하거나 변경하지 않는다. 누락/불일치/dirty는 실패하고, 성공해도 제품 빌드·proto 내용·Memory package 버전·KB 호환성·실행 검증은 NOT_RUN이다. 이 결과와 OS 검증을 함께 통합 기록에 적는다. `community` profile은 제품 clone이 필요 없고 `os`는 OS 작업에 필요한 단일 repo만 안내한다.
 
