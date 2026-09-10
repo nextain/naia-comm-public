@@ -9,4 +9,4 @@ This history-free community snapshot includes two Nextain product assets under e
 
 These files are Nextain product branding/assets and are included under the owner authorization for the public community/source surface. The Nextain name and logo remain trademarks or reserved marks where applicable; this notice does not grant a separate trademark license. The WebP embeds the `sRGB-elle-V2-srgbtrc.icc` profile by Elle Stone. Its embedded attribution is preserved: Elle Stone, `http://ninedegreesbelow.com/`, Creative Commons Attribution-ShareAlike 3.0 Unported (`https://creativecommons.org/licenses/by-sa/3.0/legalcode`).
 
-The repository Apache-2.0 license does not independently grant rights to third-party material. The 183 store-submission workflow binaries are outside this product snapshot and remain in the review record for separate per-file provenance/privacy review.
+The repository Apache-2.0 license does not independently grant rights to third-party material. Any third-party binaries and store-release material are outside this product snapshot and are reviewed separately for per-file provenance and privacy.
