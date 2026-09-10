@@ -54,4 +54,4 @@ rules:
 
 # This state machine governs this repository and its declared site adapter.
 # Product repositories retain their own rules; cross-repository coordination
-# and integration gates are specified in docs/ECOSYSTEM.ko.md.
+# and integration gates are run in the maintainers' private hub.

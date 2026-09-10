@@ -14,7 +14,9 @@
 
 ## 여러 저장소에서 함께 개발하기
 
-**[분산 협업 운영안과 역할](docs/ECOSYSTEM.ko.md)** · [English contribution guide](CONTRIBUTING.md) · [저장소 목록](workspace/repos.json) · [통합 검증 양식](docs/templates/INTEGRATION.md)
+[English contribution guide](CONTRIBUTING.md) · [저장소 목록](workspace/repos.json) · [통합 검증 양식](docs/templates/INTEGRATION.md)
+
+커미터 사이의 저장소 간 조율은 maintainer 들의 비공개 조율 저장소에서 운영하며, 결과는 각 제품 저장소의 이슈로 공개됩니다.
 
 공통 운영 문서·번역은 이 저장소에서, 제품 문서·번역·코드는 해당 제품 저장소에서 기여합니다. 여러 제품에 걸친 변경은 이곳의 coordination 이슈에서 연결합니다. 개발은 각자의 로컬 환경에서 진행하고 GitHub에 결정과 검증을 남깁니다. Discord 가입·공용 SSH 계정·유료 AI는 필수 조건이 아닙니다.
 
@@ -103,6 +105,6 @@ npm run test:first-mission
 
 ## 라이선스
 
-공개 대상으로 승인되는 소스와 문서는 [Apache License 2.0](LICENSE)에 따라 배포합니다. Apache 권한은 이 저장소의 코드와 문서 범위에만 적용되며 Naia·Nextain 상표, 스토어 문안·출판물 또는 제3자 이미지·NVA(아바타 설명 형식)·VRM(3D 아바타 파일 형식)의 권리를 부여하지 않습니다. 별도 조건은 [NOTICE](docs/store-submission-v0.2.1/NOTICE.md)의 범위와 원자산 고지를 함께 확인합니다. 공개된 캐릭터와 로고의 승인 범위는 [공개 자산 고지](NOTICE-PUBLIC-ASSETS.md)에 기록합니다.
+공개 대상으로 승인되는 소스와 문서는 [Apache License 2.0](LICENSE)에 따라 배포합니다. Apache 권한은 이 저장소의 코드와 문서 범위에만 적용되며 Naia·Nextain 상표, 스토어 문안·출판물 또는 제3자 이미지·NVA(아바타 설명 형식)·VRM(3D 아바타 파일 형식)의 권리를 부여하지 않습니다. 상표·제3자 자료의 별도 조건과 공개된 캐릭터·로고의 승인 범위는 [공개 자산 고지](NOTICE-PUBLIC-ASSETS.md)에서 확인합니다.
 
 자세한 내용은 [운영 절차](docs/WORKFLOW.ko.md), [Discord와 GitHub를 함께 쓰는 방법](docs/DISCORD.ko.md), [도입 안내](docs/ADOPTION.ko.md)를 참고합니다.

@@ -46,7 +46,7 @@ public_release:
   candidate_change_invalidates_approval: true
 collaboration:
   execution: contributor_local_workspace
-  ecosystem_guide: docs/ECOSYSTEM.ko.md
+  cross_repository_coordination: maintainers_private_hub
   repository_catalog: workspace/repos.json
   cross_repository_issue_key: owner/repo#number
   single_repository_work: owning_repository_issue_only
