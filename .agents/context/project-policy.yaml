@@ -1,6 +1,7 @@
 version: 1
 identity:
-  name: naia-comm
+  name: naia-comm-public
+  repository: nextain/naia-comm-public
   visibility: public
   authority_unit: project
 source_of_truth:
