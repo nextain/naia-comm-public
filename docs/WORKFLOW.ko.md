@@ -69,9 +69,7 @@ git diff --stat
 
 기여자는 이슈에 완료 조건·검증·되돌리기 계획과 정확한 커밋을 남긴 뒤 `main` 병합을 요청합니다. integrator는 reviewer의 독립 검토 결과를 확인하고 권한이 있는 경우에만 `main` 병합과 개발 환경 검증 결과를 기록합니다. release owner만 운영 승인과 운영 배포를 수행합니다. 운영 배포에는 승인된 정확한 SHA, 환경, 결과와 rollback reference를 남깁니다. 실패한 검증은 `branch_active`로 돌아갑니다.
 
-현재 `naia-comm`의 `deploy_dev`는 비어 있고 `deploy_production`은 `.github/workflows/deploy-naia-comm-site.yml`의 `workflow_dispatch`로 선언되어 `production` environment를 사용합니다. 첫 production dispatch 전에 소유자는 해당 environment의 배포 브랜치 정책을 `main`으로 지정하고 required reviewers를 구성해야 합니다. `main` branch protection에도 required approval 1개 이상과 self-approval 금지를 설정해야 합니다. 이 clone의 문서나 검증만으로 그 보호 설정이 이미 구성됐거나 개발·운영 배포가 실행됐다고 말하지 않으며, 실제 환경 보호 규칙과 담당자는 이슈에서 소유자에게 확인합니다.
-
-수동 production 실행은 정확한 소문자 40자리 commit SHA와 GitHub 이슈 번호(`issue`)를 입력해야 하며, 이슈 번호는 숫자만 허용되고 workflow 실행 요약에 `Refs #<issue>`로 남습니다. checkout 결과·`origin/main`·입력값이 같은지와 workflow ref가 `refs/heads/main`인지 확인합니다. 실행 actor와 triggering actor가 각각 저장소 변수 `NAIA_COMM_RELEASE_OWNERS`의 쉼표로 구분한 공개 handle 목록에 있어야 하며, 비교할 때 목록 항목의 앞뒤 공백을 제거합니다. 변수·두 actor 중 하나·ref·SHA가 없거나 맞지 않으면 거부합니다. production API token은 저장소 파일이나 일반 변수에 두지 않고 `production` environment secret으로만 구성합니다. workflow가 `production` environment를 지정한다는 사실만으로 GitHub 환경 보호 규칙이 구성됐다고 말하지 않습니다. 이 프로젝트에는 개발 배포가 선언되지 않았으므로, 배포가 필요한 변경은 `main_merge_requested → acceptance_requested`를 거쳐 진행하고 배포하지 않는 변경은 아래의 merged closure 경로를 사용합니다. 실패하거나 취소된 production release는 revert commit을 `main`에 merge한 뒤 새 `main` tip의 정확한 SHA로 다시 dispatch하며, workflow는 이전 SHA를 거부합니다.
+참여 조사 사이트는 응답을 받지 않는 보관 예제이며, 이 저장소에는 운영 배포 workflow가 포함되지 않습니다. 이 프로젝트에는 개발·운영 배포가 선언되지 않았으므로, 배포가 필요한 변경은 `main_merge_requested → acceptance_requested`를 거쳐 진행하고 배포하지 않는 변경은 아래의 merged closure 경로를 사용합니다. 사이트를 다시 배포해야 한다면 소유자가 별도 절차로 배포 environment와 branch protection, 담당자를 구성한 뒤 진행합니다. 이 clone의 문서나 검증만으로 그 보호 설정이 구성됐거나 배포가 실행됐다고 말하지 않으며, 실제 환경 규칙과 담당자는 이슈에서 소유자에게 확인합니다.
 
 개발 환경을 선언하지 않은 배포 필요 변경은 `main_merge_requested → acceptance_requested` 전이를 사용할 수 있습니다. 이때 integrator는 `review_result`, `merged_sha`, `no_development_environment_reason`을 이슈에 남기고, acceptance 증거와 알려진 제한 사항을 이어 기록합니다. 개발 환경을 실제로 선언한 별도 프로젝트만 `main_merge_requested → development_deployed → acceptance_requested` 전이를 사용합니다.
 
@@ -88,7 +86,7 @@ git diff --stat
 
 ## 주간 공유와 인수인계
 
-주간 공유에는 이번 주에 가능한 범위, 완료한 결과, 검증 명령과 결과, 재현 절차, 남은 제한 사항, 다음 담당자가 이어갈 위치를 적습니다. 인수인계는 GitHub 이슈를 기준으로 하고 Discord에는 이슈 링크만 전달합니다. 운영 권한이나 비공개 자료를 전달해야 할 때는 프로젝트 소유자가 정한 별도 절차를 사용합니다. 이미지·NVA(아바타 설명 형식)·VRM·상표·책 자료의 조건은 `docs/store-submission-v0.2.1/NOTICE.md`에서 확인합니다.
+주간 공유에는 이번 주에 가능한 범위, 완료한 결과, 검증 명령과 결과, 재현 절차, 남은 제한 사항, 다음 담당자가 이어갈 위치를 적습니다. 인수인계는 GitHub 이슈를 기준으로 하고 Discord에는 이슈 링크만 전달합니다. 운영 권한이나 비공개 자료를 전달해야 할 때는 프로젝트 소유자가 정한 별도 절차를 사용합니다. 이미지·NVA(아바타 설명 형식)·VRM·상표·책 자료의 조건은 `NOTICE-PUBLIC-ASSETS.md`에서 확인합니다.
 
 ## 금지 사항
 
