@@ -1,63 +1,65 @@
+**English** | [한국어](README.ko.md)
+
 # naia-comm
 
-`naia-comm-public`은 Naia 오픈소스 커뮤니티의 첫 기여 안내, 공개 RFC 논의, 참여 조사와 공개 운영 자료를 담는 공개 저장소입니다. 핵심 커미터 사이의 저장소 간 조율과 기기별 QA 회차는 maintainer 들의 비공개 조율 저장소에서 운영하고, 결과는 각 제품 저장소의 이슈로 공개됩니다. 공개 참여자는 자신의 fork에서 작은 결과를 만들고, 이슈와 pull request로 재현 가능한 증거를 제출합니다.
+`naia-comm-public` is the public repository for the Naia open source community's first-contribution guide, public RFC discussions, participation surveys, and public operating material. Cross-repository coordination among core committers and per-device QA rounds run in the maintainers' private coordination repository, and the results are published as issues in each product repository. Public participants produce small results in their own fork and submit reproducible evidence through issues and pull requests.
 
-저장소에서 지키는 기준은 다음과 같습니다.
+The repository keeps these standards:
 
-- GitHub 이슈가 작업 범위, 완료 조건, 검증 결과와 권한 요청의 정본입니다.
-- 개인 fork 또는 작업 브랜치에서 작업하고, 결과와 재현 절차를 pull request에 남깁니다.
-- Discord는 이슈 스레드의 논의와 검수 요청을 돕습니다. Discord나 AI 대화가 병합·배포 권한을 만들지 않습니다.
-- 비밀번호, 토큰, 개인 식별자, 사설 호스트·IP, 고객 자료와 운영 토폴로지는 저장소와 이슈에 기록하지 않습니다.
-- 공개 후보는 전체 트리, 생성물, 도달 가능한 Git 이력, workflow, 라이선스를 검수하고 소유자가 정확한 커밋 SHA를 승인한 뒤 공개합니다.
+- GitHub issues are the source of truth for work scope, acceptance criteria, verification results, and permission requests.
+- Work happens in a personal fork or work branch, and results and reproduction steps are recorded in the pull request.
+- Discord supports discussion and review requests in issue threads. Discord or AI conversations do not create merge or deployment rights.
+- Passwords, tokens, personal identifiers, private hosts and IPs, customer data, and operational topology are not recorded in the repository or issues.
+- A public candidate is published only after the full tree, generated files, reachable Git history, workflows, and licenses are reviewed and the owner approves the exact commit SHA.
 
-처음 참여한다면 **[한국어 온보딩](CONTRIBUTING.ko.md)** 또는 **[English onboarding](CONTRIBUTING.md)**에서 이슈 → fork → 첫 수정 → PR 제출을 따라갑니다. 계정·설치 없이 읽고 탐색할 수도 있습니다. 아래 workspace 명령은 이 저장소를 clone한 뒤 루트에서 실행합니다.
+If this is your first time, follow issue → fork → first edit → PR submission in the **[English onboarding](CONTRIBUTING.md)** or the **[Korean onboarding](CONTRIBUTING.ko.md)**. You can also read and explore without an account or installation. The workspace commands below are run from the root after cloning this repository.
 
-## 여러 저장소에서 함께 개발하기
+## Developing across repositories
 
-[English contribution guide](CONTRIBUTING.md) · [저장소 목록](workspace/repos.json) · [통합 검증 양식](docs/templates/INTEGRATION.md)
+[English contribution guide](CONTRIBUTING.md) · [Repository list](workspace/repos.json) · [Integration verification template](docs/templates/INTEGRATION.md)
 
-커미터 사이의 저장소 간 조율은 maintainer 들의 비공개 조율 저장소에서 운영하며, 결과는 각 제품 저장소의 이슈로 공개됩니다.
+Cross-repository coordination among committers runs in the maintainers' private coordination repository, and the results are published as issues in each product repository.
 
-공통 운영 문서·번역은 이 저장소에서, 제품 문서·번역·코드는 해당 제품 저장소에서 기여합니다. 여러 제품에 걸친 변경은 이곳의 coordination 이슈에서 연결합니다. 개발은 각자의 로컬 환경에서 진행하고 GitHub에 결정과 검증을 남깁니다. Discord 가입·공용 SSH 계정·유료 AI는 필수 조건이 아닙니다.
+Contribute common operating documents and translations in this repository, and product documents, translations, and code in the corresponding product repository. Changes spanning several products are linked through a coordination issue here. Development happens in each person's local environment, and decisions and verification are recorded on GitHub. Joining Discord, a shared SSH account, and paid AI are not required.
 
 ```bash
-# 읽기 전용: 선택적 제품 clone 명령 안내
+# Read-only: shows optional product clone commands
 node scripts/workspace.mjs plan shell
-# clone 후 HEAD와 Agent/Memory pairing 점검 (제품 빌드 검증과 별개)
+# After cloning, check HEAD and Agent/Memory pairing (separate from product build verification)
 node scripts/workspace.mjs doctor shell
 ```
 
-이 저장소의 원격은 `nextain/naia-comm-public`입니다. 로컬 디렉터리 이름은 `naia-comm-public`을 권장합니다. 다른 이름을 쓰면 비공개 조율 저장소와 혼동하기 쉽습니다. 참여 조사 사이트는 보관된 예제로 로컬 학습에 사용할 수 있으며, 현재 응답을 받지 않습니다. 첫 기여는 아래 온보딩을 따릅니다.
+This repository's remote is `nextain/naia-comm-public`. `naia-comm-public` is the recommended local directory name; another name is easy to confuse with the private coordination repository. The participation survey site is an archived example that can be used for local learning and does not currently accept responses. For your first contribution, follow the onboarding below.
 
-## 이 프로젝트가 안내하는 일
+## What this project guides
 
-참여자는 자신의 언어로 목적과 가능한 시작 시점을 설명하고 작은 미션 하나를 정해 시작합니다. 미션은 코드, 문서, 번역, 데모 또는 운영 자료가 될 수 있습니다. 이슈에는 결과, 담당 역할, 브랜치, 검증 명령, 재현 절차와 배포 필요 여부를 적습니다. 이슈에 적은 범위 안의 수정·검증·실패 후 재시도는 계속 진행할 수 있으며, 범위·역할·권한·배포 대상이 바뀔 때만 이슈에서 다시 합의합니다.
+Participants describe their goal and when they can start in their own language, then pick one small mission to begin. A mission can be code, documentation, translation, a demo, or operating material. The issue records the outcome, assigned roles, branch, verification commands, reproduction steps, and whether deployment is needed. Edits, verification, and retries after failure within the scope written in the issue can continue; only changes to scope, roles, permissions, or deployment target need to be agreed again in the issue.
 
-역할은 권한을 분리합니다. contributor는 이슈 브랜치에서 작업하고 검토를 요청합니다. reviewer는 contributor와 독립적으로 변경과 완료 조건을 확인하고 요청사항을 남깁니다. integrator는 확인된 결과를 바탕으로 정책에 맞는 병합과 비배포 종료 기록을 담당합니다. release owner는 별도 승인 뒤 production 배포와 rollback을 담당합니다. `project.yaml`의 역할은 workflow 선언이며 실제 강제는 GitHub 저장소 권한, branch protection, protected environment와 저장소 변수로 이뤄집니다. maintainer가 이슈에서 reviewer와 integrator를 지정하지만 응답 시간은 보장하지 않습니다. 연락 가능 시간은 선택적으로 적고, 공유 자원 변경이 있을 때만 별도 변경 시간창을 합의하며, 문서와 로컬 검증 명령이 이 권한 설정을 자동으로 강제한다고 주장하지 않습니다.
+Roles separate permissions. A contributor works on an issue branch and requests review. A reviewer checks the change and acceptance criteria independently of the contributor and leaves requests. An integrator handles policy-compliant merges and non-deployment closure records based on confirmed results. A release owner handles production deployment and rollback after separate approval. The roles in `project.yaml` are workflow declarations; actual enforcement comes from GitHub repository permissions, branch protection, protected environments, and repository variables. A maintainer assigns the reviewer and integrator in the issue, but response time is not guaranteed. Contact hours are optional, a separate change window is agreed only when shared resources change, and the documents and local verification commands do not claim to enforce these permission settings automatically.
 
-## 현재 확인된 상태
+## Current confirmed state
 
-- 기본 브랜치와 통합 브랜치는 `main`입니다. 현재 공개 참여 흐름은 `main`으로 pull request를 보내는 방식이며, `dev` 브랜치를 존재한다고 가정하지 않습니다.
-- 개발 배포는 선언하지 않습니다. production 사이트 workflow는 GitHub Actions의 `workflow_dispatch`에서만 시작되고 `production` environment를 사용합니다. 첫 production dispatch 전에 저장소 소유자가 해당 environment의 배포 브랜치 정책을 `main`으로 두고 required reviewers를 구성해야 하며, 이 저장소는 그 설정이 이미 완료됐다고 주장하지 않습니다. 저장소 소유자는 `main` branch protection에도 required approval 1개 이상과 self-approval 금지를 설정해야 하며, 이 후보의 문서만으로 호스트 설정 완료를 주장하지 않습니다.
-- 수동 production 실행은 입력한 소문자 40자리 commit SHA가 `main`의 현재 SHA와 같고, workflow가 `main` ref에서 시작되며, 실행 actor와 triggering actor가 각각 저장소 변수 `NAIA_COMM_RELEASE_OWNERS`에 있을 때만 진행됩니다. 변수 미설정, 두 actor 중 하나의 불일치, ref·SHA 불일치는 거부됩니다. 변수의 쉼표 구분 값은 비교 전에 앞뒤 공백을 제거합니다. production API token은 저장소 파일이나 일반 변수에 두지 않고 `production` environment secret으로만 구성해야 합니다. `production`은 workflow가 지정하는 environment 이름이며, 보호 규칙이 실제로 구성됐다는 증거가 아닙니다.
-- `npm test`는 workspace 계획·checkout 점검 테스트, 구조 검증, 사이트 제출 API 계약, NUL 경로를 쓰는 이력 검사 fixture와 공개 안전성 검사를 실행합니다. YAML workflow 실행, 사이트·Azure Functions의 실제 실행, Discord 실행 또는 배포 성공을 증명하지 않습니다.
-- 정적 화면은 아래 로컬 명령으로 확인할 수 있습니다. `/api` 경로는 Azure Functions Core Tools 또는 배포된 환경이 필요합니다.
+- The default branch and integration branch are `main`. The current public participation flow sends pull requests to `main` and does not assume a `dev` branch exists.
+- No development deployment is declared. The production site workflow starts only from GitHub Actions `workflow_dispatch` and uses the `production` environment. Before the first production dispatch, the repository owner must set that environment's deployment branch policy to `main` and configure required reviewers; this repository does not claim that setup is already done. The repository owner must also configure `main` branch protection with at least one required approval and self-approval disallowed; this candidate's documentation alone does not claim the host setup is complete.
+- A manual production run proceeds only when the entered lowercase 40-character commit SHA matches the current SHA of `main`, the workflow starts from the `main` ref, and both the executing actor and the triggering actor are listed in the repository variable `NAIA_COMM_RELEASE_OWNERS`. An unset variable, a mismatch for either actor, or a ref or SHA mismatch is rejected. Leading and trailing whitespace is trimmed from the variable's comma-separated values before comparison. The production API token must not be kept in repository files or ordinary variables; it must be configured only as a `production` environment secret. `production` is the environment name the workflow specifies, not evidence that protection rules are actually configured.
+- `npm test` runs workspace planning and checkout check tests, structure validation, the site submission API contract, history-scan fixtures that use NUL paths, and the public-safety check. It does not prove YAML workflow execution, actual execution of the site or Azure Functions, Discord execution, or deployment success.
+- The static pages can be checked with the local command below. `/api` paths need Azure Functions Core Tools or a deployed environment.
 
-처음 준비할 도구는 Node.js `20.11` 이상, npm, Git `2.50.0` 이상, Python 3과 POSIX shell입니다. 공개 안전성 검사는 Git `2.50.0` 이상의 NUL 구분 `rev-list --objects` 출력이 필요하며, 더 오래된 Git은 역사 검사를 실패 시 차단(fail-closed) 방식으로 거부합니다. 버전이 낮으면 [공식 Git 업그레이드 안내](https://git-scm.com/downloads)를 따릅니다. Windows에서는 Windows Subsystem for Linux(WSL) 환경을 지원 범위로 사용하며, Windows native shell 동작은 이 저장소가 보장하지 않습니다.
+Tools to prepare first: Node.js `20.11` or later, npm, Git `2.50.0` or later, Python 3, and a POSIX shell. The public-safety check needs NUL-separated `rev-list --objects` output from Git `2.50.0` or later; older Git versions are rejected by the history check in a fail-closed manner. If your version is older, follow the [official Git upgrade guide](https://git-scm.com/downloads). On Windows, the supported environment is Windows Subsystem for Linux (WSL); this repository does not guarantee behavior in a native Windows shell.
 
-## 공개 검토 요청
+## Public review requests
 
-검토 요청과 질문은 [GitHub 공개 이슈](https://github.com/nextain/naia-comm-public/issues)에 남깁니다. 역할 선언은 실제 권한 부여 기록이 아니며, GitHub 저장소 권한·branch protection·protected environment·저장소 변수의 설정이 실제 enforcement입니다. maintainer가 이슈에서 contributor와 다른 reviewer 및 integrator를 지정하고, reviewer가 같은 SHA와 완료 조건을 독립적으로 확인한 뒤 integrator가 그 결과를 바탕으로 종료 기록을 남깁니다. 이슈에서 검토를 요청할 수 있지만 응답 시간은 보장하지 않습니다.
+Leave review requests and questions in [GitHub public issues](https://github.com/nextain/naia-comm-public/issues). Role declarations are not records of actual permission grants; the settings of GitHub repository permissions, branch protection, protected environments, and repository variables are the actual enforcement. A maintainer assigns, in the issue, a reviewer and an integrator distinct from the contributor; the reviewer independently checks the same SHA and acceptance criteria, and the integrator then leaves the closure record based on that result. You can request review in the issue, but response time is not guaranteed.
 
-## AI 도구와 게이트웨이 범위
+## AI tools and gateway scope
 
-개인 로컬 환경에서 원하는 AI 도구를 선택적으로 사용할 수 있습니다. 도구와 모델의 가용성은 각자의 계정에 따릅니다. 작성자는 AI가 만든 변경도 직접 설명하고 검증하며, AI 리뷰는 독립적인 사람의 승인이나 배포 권한을 대신하지 않습니다.
+You may optionally use any AI tool you like in your personal local environment. Availability of tools and models depends on your own accounts. Authors explain and verify AI-generated changes themselves, and AI review does not replace independent human approval or deployment rights.
 
-## 첫 기여 시작하기
+## Starting your first contribution
 
-GitHub 저장소 화면에서 **Fork → Create new fork**를 눌러 자신의 계정에 공개 저장소의 fork를 만든 뒤 HTTPS 또는 SSH로 복제하고 정책, 프로젝트 사실, 프로젝트 안내를 읽습니다.
+On the GitHub repository page, select **Fork → Create new fork** to create a fork of the public repository in your account, clone it over HTTPS or SSH, and read the policy, project facts, and project guide.
 
-`YOUR_GITHUB_HANDLE`을 자신의 GitHub 계정명으로 바꾼 뒤 실행합니다.
+Replace `YOUR_GITHUB_HANDLE` with your GitHub account name before running:
 
 ```bash
 git clone https://github.com/YOUR_GITHUB_HANDLE/naia-comm-public.git naia-comm-public
@@ -71,9 +73,9 @@ sed -n '1,220p' projects/naia-comm/project.yaml
 npm test
 ```
 
-GitHub 이슈에는 작은 미션과 완료 조건, 기여 유형, 담당자, 이슈 브랜치, 배포 필요 여부, 검증 명령과 재현 절차를 적습니다. 연락·응답 시간은 선택이며, 변경 시간창은 공유 자원 작업에만 해당합니다. 공개 자료의 로컬 수정·커밋·자신의 fork에 push·PR 제출은 1:1 시작 승인 없이 진행할 수 있습니다. 이슈 브랜치에서 작업한 뒤 `main`으로 pull request를 만들고 다른 reviewer에게 정확한 SHA의 독립 검토를 요청합니다. integrator가 검토 결과를 확인해 `main`에 merge한 뒤, 비배포 작업이면 `main_merge_requested → closed` 전이에 `merged_sha`, 비배포 사유와 closure record를 남깁니다. 기여자가 직접 merge, production 배포, database 변경 또는 공개 전환을 실행하지 않습니다.
+In the GitHub issue, write a small mission and its acceptance criteria, the contribution type, the assignee, the issue branch, whether deployment is needed, and the verification commands and reproduction steps. Contact and response hours are optional, and a change window applies only to work on shared resources. Local edits to public material, commits, pushes to your own fork, and PR submission can proceed without one-to-one start approval. After working on the issue branch, open a pull request to `main` and ask a different reviewer for an independent review of the exact SHA. After the integrator checks the review result and merges into `main`, a non-deployment task records `merged_sha`, the non-deployment reason, and a closure record on the `main_merge_requested → closed` transition. Contributors do not run merges, production deployments, database changes, or public releases themselves.
 
-## 작업과 검증
+## Work and verification
 
 ```bash
 npm test
@@ -82,29 +84,29 @@ git diff --check
 git status --short
 ```
 
-검증 결과, 변경 파일, 제한 사항, 재현 명령을 이슈와 pull request에 기록합니다. 배포하지 않는 문서·번역·데모·운영 자료는 로컬 증거와 독립 검토 결과를 남긴 뒤 비배포 종료 경로를 사용합니다.
+Record verification results, changed files, limitations, and reproduction commands in the issue and pull request. Documentation, translations, demos, and operating material that are not deployed use the non-deployment closure path after leaving local evidence and the independent review result.
 
-개발 환경은 현재 선언하지 않으므로, 로컬 `npm test`, `npm run test:first-mission`과 정적 화면 확인이 acceptance 경로입니다. reviewer가 동일한 commit SHA, 이 로컬 증거와 제한 사항을 독립적으로 확인하고, integrator가 먼저 `main`에 merge한 뒤 `main_merge_requested → closed` 비배포 종료 기록을 남깁니다. 이 절차는 개발 배포나 production 성공을 뜻하지 않습니다. production 실패나 취소 뒤에는 revert commit을 `main`에 merge하고 새 `main` tip의 정확한 SHA로 다시 dispatch하며, workflow는 이전 SHA를 거부합니다.
+Since no development environment is currently declared, local `npm test`, `npm run test:first-mission`, and the static page check are the acceptance path. The reviewer independently checks the same commit SHA, this local evidence, and the limitations; the integrator first merges into `main` and then leaves the `main_merge_requested → closed` non-deployment closure record. This procedure does not mean a development deployment or production success. After a production failure or cancellation, merge a revert commit into `main` and dispatch again with the exact SHA of the new `main` tip; the workflow rejects the previous SHA.
 
-정적 화면을 확인하려면 다음을 실행합니다.
+To check the static pages, run:
 
 ```bash
 cd projects/naia-comm/site
 python3 -m http.server 8080
 ```
 
-브라우저에서 `http://localhost:8080/`을 열면 정적 HTML·CSS·이미지 경로를 확인할 수 있습니다. 이 명령은 API, Discord 또는 Azure 배포를 검증하지 않습니다.
+Open `http://localhost:8080/` in a browser to check the static HTML, CSS, and image paths. This command does not verify the API, Discord, or Azure deployment.
 
-## 실행 가능한 첫 문서 미션
+## A runnable first documentation mission
 
-처음에는 [한국어 기여 안내](CONTRIBUTING.ko.md)의 문서 미션을 실행합니다. 수동 연습 문장을 되돌린 뒤 자동 검사를 실행합니다. 자동 smoke test는 `.git` 없는 임시 fixture에서 README 한 파일만 수정해 중복·anchor 실패·검증·rollback을 확인합니다. 실제 기여는 자신의 fork와 이슈 브랜치에서 같은 절차를 따라 수행하고, 결과를 검토 요청으로 제출하며 자동 fixture의 성공을 실제 merge나 배포의 증거로 해석하지 않습니다.
+Start with the documentation mission in the [Korean contribution guide](CONTRIBUTING.ko.md). Revert the manual practice sentence, then run the automated check. The automated smoke test edits a single README file in a temporary fixture without `.git` to check duplicates, anchor failures, verification, and rollback. Do real contributions with the same procedure in your own fork and issue branch and submit the result as a review request; do not interpret the success of the automated fixture as evidence of an actual merge or deployment.
 
 ```bash
 npm run test:first-mission
 ```
 
-## 라이선스
+## License
 
-공개 대상으로 승인되는 소스와 문서는 [Apache License 2.0](LICENSE)에 따라 배포합니다. Apache 권한은 이 저장소의 코드와 문서 범위에만 적용되며 Naia·Nextain 상표, 스토어 문안·출판물 또는 제3자 이미지·NVA(아바타 설명 형식)·VRM(3D 아바타 파일 형식)의 권리를 부여하지 않습니다. 상표·제3자 자료의 별도 조건과 공개된 캐릭터·로고의 승인 범위는 [공개 자산 고지](NOTICE-PUBLIC-ASSETS.md)에서 확인합니다.
+Source and documentation approved for publication are distributed under the [Apache License 2.0](LICENSE). The Apache grant applies only to this repository's code and documentation, and does not grant rights to the Naia or Nextain trademarks, store copy or publications, or third-party images, NVA (avatar description format), or VRM (3D avatar file format). See the [public asset notice](NOTICE-PUBLIC-ASSETS.md) for the separate terms for trademarks and third-party material and the approved scope of published characters and logos.
 
-자세한 내용은 [운영 절차](docs/WORKFLOW.ko.md), [Discord와 GitHub를 함께 쓰는 방법](docs/DISCORD.ko.md), [도입 안내](docs/ADOPTION.ko.md)를 참고합니다.
+For details, see the [operating procedure](docs/WORKFLOW.ko.md) (Korean), [how to use Discord and GitHub together](docs/DISCORD.ko.md) (Korean), and the [adoption guide](docs/ADOPTION.ko.md) (Korean).
