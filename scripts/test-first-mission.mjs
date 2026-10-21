@@ -127,7 +127,7 @@ function assertFailedMission(result, expectedMessage) {
 }
 
 function assertOnlyReadmeChanged(before, after) {
-  assert.deepEqual(changedPaths(before, after), ['README.md']);
+  assert.deepEqual(changedPaths(before, after), ['README.ko.md']);
 }
 
 function assertNpmTestPassed(fixture) {
@@ -153,7 +153,7 @@ function main() {
     const fixtureBefore = snapshotTree(fixture);
     assert.equal(fixtureBefore.has('.env'), false, 'ignored fixture .env must not be observed');
     assert.equal(fixtureBefore.has('.runtime/participants.json'), false, 'ignored fixture runtime must not be observed');
-    const readmePath = join(fixture, 'README.md');
+    const readmePath = join(fixture, 'README.ko.md');
     const readmeBefore = readFileSync(readmePath);
     const readmeText = readmeBefore.toString('utf8');
     assert.ok(readmeText.includes(mission.anchor), 'fixture README must contain the documented anchor; keep CONTRIBUTING.ko.md Python anchor in sync');

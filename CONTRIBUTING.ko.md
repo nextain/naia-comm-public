@@ -86,13 +86,13 @@ SSH를 사용하려면 `git@github.com:YOUR_GITHUB_HANDLE/naia-comm-public.git`�
 
 준비 블록은 괄호 안의 별도 shell에서 실행되므로 실패하면 그 블록만 멈춥니다. 사용 중인 터미널은 종료하지 않습니다.
 
-아래 한 문장 추가는 로컬 연습입니다. 동일한 연습 문장을 매번 PR로 제출하지 않습니다. 제출할 첫 기여는 실제로 발견한 오타·누락 안내 등 유용한 수정으로 고릅니다. 다음 Python 블록으로 `README.md`의 기존 문장 뒤에 한 문장을 추가합니다.
+아래 한 문장 추가는 로컬 연습입니다. 동일한 연습 문장을 매번 PR로 제출하지 않습니다. 제출할 첫 기여는 실제로 발견한 오타·누락 안내 등 유용한 수정으로 고릅니다. 다음 Python 블록으로 `README.ko.md`의 기존 문장 뒤에 한 문장을 추가합니다.
 
 ```bash
 python3 - <<'PY'
 from pathlib import Path
 
-path = Path("README.md")
+path = Path("README.ko.md")
 anchor = "자세한 내용은 [운영 절차](docs/WORKFLOW.ko.md), [Discord와 GitHub를 함께 쓰는 방법](docs/DISCORD.ko.md), [도입 안내](docs/ADOPTION.ko.md)를 참고합니다."
 addition = " 문서 미션의 결과는 같은 명령으로 다시 확인할 수 있어야 합니다."
 text = path.read_text(encoding="utf-8")
@@ -104,18 +104,18 @@ path.write_text(text.replace(anchor, anchor + addition, 1), encoding="utf-8")
 PY
 npm test
 git diff --check
-git diff -- README.md
+git diff -- README.ko.md
 git diff --stat
 ```
 
-이 연습의 `anchor`는 `README.md` 안내 문장과 byte 단위로 결합된 계약입니다. 문장을 바꾸면 위 Python 블록의 `anchor` 대입값도 함께 갱신하고 `npm run test:first-mission`으로 중복·누락 검사를 다시 실행합니다. 자동 검사는 이 절 제목, `bash` 코드 블록과 Python의 `anchor`·`addition` 대입문을 찾아 실행하므로 구조를 바꾸면 `scripts/test-first-mission.mjs`도 함께 확인합니다. 수동 연습 문장이 남아 있으면 중복 검사에서 실패하므로 아래 복구 후 실행합니다.
+이 연습의 `anchor`는 `README.ko.md` 안내 문장과 byte 단위로 결합된 계약입니다. 문장을 바꾸면 위 Python 블록의 `anchor` 대입값도 함께 갱신하고 `npm run test:first-mission`으로 중복·누락 검사를 다시 실행합니다. 자동 검사는 이 절 제목, `bash` 코드 블록과 Python의 `anchor`·`addition` 대입문을 찾아 실행하므로 구조를 바꾸면 `scripts/test-first-mission.mjs`도 함께 확인합니다. 수동 연습 문장이 남아 있으면 중복 검사에서 실패하므로 아래 복구 후 실행합니다.
 
 `npm run test:first-mission`은 이 문서에서 Python 블록을 추출해 `.git` 없는 임시 fixture에서 자동으로 실행하는 별도 smoke test입니다. 그 자동 검사는 fixture에서만 동작하므로 실제 branch의 README를 바꾸지 않습니다. 위의 수동 연습을 끝내면 diff를 확인합니다. README에 이 연습 변경만 있을 때 다음 명령으로 되돌립니다. 다른 변경이 섞여 있으면 restore하지 말고 편집기로 연습 문장만 제거합니다.
 
 ```bash
 git status --short
-git diff -- README.md
-git restore -- README.md
+git diff -- README.ko.md
+git restore -- README.ko.md
 git diff --check
 git status --short
 git branch --show-current
